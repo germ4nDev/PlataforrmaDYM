@@ -9,6 +9,7 @@ import { DataTableDirective, DataTablesModule } from 'angular-datatables';
   styleUrl: './sites.component.scss'
 })
 export class SitesComponent implements OnInit, AfterViewInit {
+    [x: string]: any;
 
 dtColumnSearchingOptions: object = {};
   @ViewChild(DataTableDirective)
@@ -20,28 +21,20 @@ dtColumnSearchingOptions: object = {};
       ajax: 'fake-data/datatable-data.json',
       columns: [
         {
-          title: 'Name',
-          data: 'name'
+          title: 'Nombre',
+          data: 'nombre'
         },
         {
-          title: 'Position',
-          data: 'position'
+          title: 'Descripción',
+          data: 'descripción'
         },
         {
-          title: 'Office',
-          data: 'office'
+          title: 'URL',
+          data: 'URL'
         },
         {
-          title: 'Age',
-          data: 'age'
-        },
-        {
-          title: 'Start Date',
-          data: 'date'
-        },
-        {
-          title: 'Salary',
-          data: 'salary'
+          title: 'Estado',
+          data: 'estado'
         }
       ],
       responsive: true
@@ -60,5 +53,11 @@ dtColumnSearchingOptions: object = {};
         });
       });
     });
+  }
+  nuevoSitio() {
+    this['router'].navigate(['/nuevo-sitio']);
+  }
+  Regresar() {
+    this['router'].navigate(['/nuevo-sitio']);
   }
 }
