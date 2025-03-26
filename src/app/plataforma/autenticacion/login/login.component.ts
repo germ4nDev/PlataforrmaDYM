@@ -8,7 +8,7 @@ import { first } from 'rxjs/operators';
 
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { AuthenticationService } from 'src/app/plataforma/services/authentication.service';
+import { AuthenticationService } from 'src/app/theme/shared/service/authentication.service';
 
 @Component({
   selector: 'app-login',

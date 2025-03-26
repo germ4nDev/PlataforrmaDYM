@@ -24,26 +24,26 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
 // bootstrap import
 import {
-  NgbDropdownModule,
-  NgbNavModule,
-  NgbTooltipModule,
-  NgbModule,
-  NgbAccordionModule,
-  NgbCollapseModule,
-  NgbDatepickerModule,
-  NgbProgressbarModule
-} from '@ng-bootstrap/ng-bootstrap';
+    NgbDropdownModule,
+    NgbNavModule,
+    NgbTooltipModule,
+    NgbModule,
+    NgbAccordionModule,
+    NgbCollapseModule,
+    NgbDatepickerModule,
+    NgbProgressbarModule
+  } from '@ng-bootstrap/ng-bootstrap';
 
-const bootstrap = [
-  NgbDropdownModule,
-  NgbNavModule,
-  NgbTooltipModule,
-  NgbModule,
-  NgbAccordionModule,
-  NgbCollapseModule,
-  NgbDatepickerModule,
-  NgbProgressbarModule
-];
+  const bootstrap = [
+    NgbDropdownModule,
+    NgbNavModule,
+    NgbTooltipModule,
+    NgbModule,
+    NgbAccordionModule,
+    NgbCollapseModule,
+    NgbDatepickerModule,
+    NgbProgressbarModule
+  ];
 
 @NgModule({
   imports: [

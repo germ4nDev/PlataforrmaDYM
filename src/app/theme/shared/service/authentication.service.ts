@@ -4,14 +4,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { User } from '../_helpers/user';
+import { PTLsuarioAP } from '../_helpers/models/PTLUsuarioAP.model';
+// import { User } from '../_helpers/user';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
   // eslint-disable-next-line
-  private currentUserSubject: BehaviorSubject<User | any>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<PTLsuarioAP | any>;
+  public currentUser: Observable<PTLsuarioAP>;
 
   constructor(
     private router: Router,
@@ -22,12 +23,12 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): PTLsuarioAP {
     return this.currentUserSubject.value;
   }
 
   login(email: string, password: string) {
-    return this.http.post<User>(`${environment.apiUrl}/api/account/login`, { email, password }).pipe(
+    return this.http.post<PTLsuarioAP>(`${environment.apiUrl}/api/account/login`, { email, password }).pipe(
       map((user) => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
