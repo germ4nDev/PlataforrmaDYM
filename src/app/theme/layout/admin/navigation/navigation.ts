@@ -26,6 +26,44 @@ export const NavigationItems: NavigationItem[] = [
         icon: 'feather icon-monitor',
         children: [
             {
+                id: 'autenticacion',
+                title: 'Autenticación',
+                type: 'collapse',
+                icon: 'feather icon-home',
+                children: [
+                    {
+                        id: 'logn',
+                        title: 'Login',
+                        type: 'item',
+                        url: '/autenticacion/login'
+                    },
+                    {
+                        id: 'change-password',
+                        title: 'Cambio Clave',
+                        type: 'item',
+                        url: '/autenticacion/change-password'
+                    },
+                    {
+                        id: 'reset-password',
+                        title: 'Resetear Clave',
+                        type: 'item',
+                        url: '/autenticacion/reset-password'
+                    },
+                    {
+                        id: 'perfil',
+                        title: 'Perfil Usuario',
+                        type: 'item',
+                        url: '/autenticacion/perfil'
+                    },
+                    {
+                        id: 'perfil-configuracion',
+                        title: 'Configuración Perfil',
+                        type: 'item',
+                        url: '/autenticacion/perfil-configuracion'
+                    }
+                ]
+            },
+            {
                 id: 'frontal',
                 title: 'Home',
                 type: 'collapse',
@@ -311,6 +349,8 @@ export const NavigationItems: NavigationItem[] = [
             }
         ]
     },
+
+    // TODO DEMO folder se debe evaluar que de esta carpeta dse debe mantener
     {
         id: 'navigation',
         title: 'Navigation',

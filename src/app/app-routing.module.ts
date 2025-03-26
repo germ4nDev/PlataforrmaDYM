@@ -145,6 +145,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./plataforma/roles/roles.module').then((module) => module.RolesModule)
       },
+      {
+        path: 'autenticacion',
+        loadChildren: () =>
+          import('./plataforma/autenticacion/autenticacion.module').then((module) => module.AutenticacionModule)
+      },
       // END PLATAFORMA DYM
 
       {
