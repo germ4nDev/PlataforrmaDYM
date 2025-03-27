@@ -9,14 +9,6 @@ const routes: Routes = [
         {
             path: 'home',
             loadComponent: () => import('../home/home/home.component').then(m => m.HomeComponent)
-        },
-        {
-            path: 'inicio',
-            loadComponent: () => import('./inicio/inicio.component').then(m => m.InicioComponent)
-        },
-        {
-            path: 'gestion-inicio',
-            loadComponent: () => import('./inicio/gestion-inicio/gestion-inicio.component').then(m => m.GestionInicioComponent)
         }
     ]
   }
@@ -26,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FrontalRoutingModule {}
+export class HomeRoutingModule {}

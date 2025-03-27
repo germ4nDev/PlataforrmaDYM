@@ -64,14 +64,28 @@ export const NavigationItems: NavigationItem[] = [
                 ]
             },
             {
-                id: 'frontal',
+                id: 'home',
                 title: 'Home',
                 type: 'collapse',
                 icon: 'feather icon-home',
                 children: [
                     {
+                        id: 'home',
+                        title: 'Dashboard',
+                        type: 'item',
+                        url: '/home/home'
+                    }
+                ]
+            },
+            {
+                id: 'frontal',
+                title: 'External',
+                type: 'collapse',
+                icon: 'feather icon-home',
+                children: [
+                    {
                         id: 'inicio',
-                        title: 'Inicio',
+                        title: 'Inicio Apps',
                         type: 'item',
                         url: '/frontal/inicio'
                     },
