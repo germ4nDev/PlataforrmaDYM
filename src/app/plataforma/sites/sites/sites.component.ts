@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-sites',
@@ -15,6 +16,7 @@ dtColumnSearchingOptions: object = {};
   @ViewChild(DataTableDirective)
   datatableElement!: DataTableDirective;
 
+  constructor(private router: Router) {}
   // life cycle event
   ngOnInit() {
     this.dtColumnSearchingOptions = {
@@ -54,10 +56,8 @@ dtColumnSearchingOptions: object = {};
       });
     });
   }
+
   nuevoSitio() {
-    this['router'].navigate(['/nuevo-sitio']);
-  }
-  Regresar() {
-    this['router'].navigate(['/nuevo-sitio']);
+    this.router.navigate(['/sites/new-site']);
   }
 }

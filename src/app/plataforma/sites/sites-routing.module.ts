@@ -29,6 +29,10 @@ const routes: Routes = [
         {
             path: 'gestion-contenido',
             loadComponent: () => import('./contenidos/geston-contenido/geston-contenido.component').then(m => m.GestonContenidoComponent)
+        },
+        {
+            path: 'new-site',
+            loadComponent: () => import('./sites/new-site/new-site.component').then(m => m.NewSiteComponent)
         }
 
     ]
