@@ -7,10 +7,6 @@ const routes: Routes = [
     path: '',
     children: [
         {
-            path: 'home',
-            loadComponent: () => import('../home/home/home.component').then(m => m.HomeComponent)
-        },
-        {
             path: 'inicio',
             loadComponent: () => import('./inicio/inicio.component').then(m => m.InicioComponent)
         },
