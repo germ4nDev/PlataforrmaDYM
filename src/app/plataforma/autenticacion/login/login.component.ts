@@ -11,13 +11,13 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { AuthenticationService } from 'src/app/theme/shared/service/authentication.service';
 
 @Component({
-  selector: 'app-auth-signin-v2',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule, RouterModule, SharedModule],
-  templateUrl: './auth-signin-v2.component.html',
-  styleUrls: ['./auth-signin-v2.component.scss']
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
-export default class AuthSigninV2Component implements OnInit {
+export class LoginComponent implements OnInit {
   // public method
   usernameValue = 'info@codedthemes.com';
   userPassword = '123456';
@@ -36,9 +36,9 @@ export default class AuthSigninV2Component implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-    // if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.currentUserValue) {
     //   this.router.navigate(['/dashboard/analytics']);
-    // }
+    }
   }
 
   ngOnInit() {
@@ -82,7 +82,13 @@ export default class AuthSigninV2Component implements OnInit {
       .login(this.formValues?.['username']?.value, this.formValues?.['password']?.value)
       .pipe(first())
       .subscribe({
-        next: () => {
+        next: (user) => {
+            console.log('el usuario', user);
+          // RODO aui es donde se inicia la sesion de usuario
+          // aplicacionId
+          // fecha inicio
+          // fecha fin
+          // array de roles segun la aplicacionj
           this.router.navigate(['/frontal/inicio']);
         },
         error: (error) => {
@@ -91,4 +97,5 @@ export default class AuthSigninV2Component implements OnInit {
         }
       });
   }
+
 }
