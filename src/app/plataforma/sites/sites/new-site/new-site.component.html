@@ -1,116 +1,189 @@
+<app-card cardTitle="Formulario de Sitios" class="sticky-card">
+    <div class="text-center mt-3">
+        <div class="d-flex gap-3">
+            <button type="button">
+                <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i
+                        class="feather icon-plus ms-2"></i></span>
+            </button>
+            <button type="button">
+                <span class="btn-NuevoSitio" (click)="regresarSitio()">Regresar<i
+                        class="feather icon-arrow-left ms-2"></i></span>
+            </button>
+        </div>
+    </div>
+</app-card>
 <div class="row">
     <div class="col-sm-12">
-      <app-card cardTitle="Formulario de Sitios">
-        <div class="card-header">
-            <h3>Nuevo Sitio</h3>
-        </div>
-        <form #validationForm="ngForm" class="editForm" novalidate>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="nombre">Nombre</label>
-                <input
-                  class="form-control input-md"
-                  id="nombre"
-                  name="nombre"
-                  type="text"
-                  placeholder="nombre del sitio"
-                  [ngClass]="{
+        <app-card cardTitle="">
+            <div class="card-header">
+                <h3>Nuevo Sitio</h3>
+            </div>
+            <form #validationForm="ngForm" class="editForm" novalidate>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-control-label" for="nombre">Nombre</label>
+                            <input class="form-control input-md" id="nombre" name="nombre" type="text"
+                                placeholder="nombre del sitio" [ngClass]="{
                     'is-invalid': !nombre.valid && (nombre.dirty || nombre.touched || isSubmit)
-                  }"
-                  #nombre="ngModel"
-                  required
-                  nombre
-                  [(ngModel)]="FormSitio.nombre"
-                />
-                @if (!nombre.valid && (nombre.dirty || nombre.touched || isSubmit)) {
-                  <label id="validation-nombre-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >Por favor, Ingrese un nombre. Este campo es obligatorio..</label
-                  >
-                }
-              </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">Descripción</label>
-                  <textarea
-                    class="form-control"
-                    placeholder="Descripcion del sitio"
-                    name="validation-descripcion"
-                    [ngClass]="{
-                      'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
-                    }"
-                    #descripcion="ngModel"
-                    required
-                    [(ngModel)]="FormSitio.descripcion"
-                  ></textarea>
-                  @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
-                    <label id="validation-descripcion-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una descripción. Este campo es obligatorio.</label
-                    >
-                  }
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">URL</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="validation-url"
-                    placeholder="URL del sitio"
-                    [ngClass]="{
+                  }" #nombre="ngModel" required nombre [(ngModel)]="FormSitio.nombre" />
+                            @if (!nombre.valid && (nombre.dirty || nombre.touched || isSubmit)) {
+                            <label id="validation-nombre-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">Por favor,
+                                Ingrese un nombre. Este campo es obligatorio..</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">URL</label>
+                            <input type="text" class="form-control" name="validation-url" placeholder="URL del sitio"
+                                [ngClass]="{
                       'is-invalid': !url.valid && (url.dirty || url.touched || isSubmit)
-                    }"
-                    #url="ngModel"
-                    required
-                    url
-                    [(ngModel)]="FormSitio.url"
-                  />
-                  @if (!url.valid && (url.dirty || url.touched || isSubmit)) {
-                    <label id="validation-url-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es obligatorio.</label
-                    >
-                  }
-                </div>
-              </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label">Estado</label>
-                <select
-                  class="form-control"
-                  title="select"
-                  name="validation-estado"
-                  [ngClass]="{
+                    }" #url="ngModel" required url [(ngModel)]="FormSitio.url" />
+                            @if (!url.valid && (url.dirty || url.touched || isSubmit)) {
+                            <label id="validation-url-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">Por favor,
+                                ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es
+                                obligatorio.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
                     'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
-                  }"
-                  #estado="ngModel"
-                  required
-                  [(ngModel)]="FormSitio.estado"
-                >
-                  <option value>--Seleccione estado--</option>
-                    <option value="pitons">True</option>
-                    <option value="pitons">False</option>
-                </select>
-                @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
-                  <label id="validation-estado-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >La selección del estado es obligatoria.</label
-                  >
-                }
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-3">
-            <div class="d-flex justify-content-center gap-3">
-                <button type="button">
-                    <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i class="feather icon-plus ms-2"></i></span>
-                  </button>
-                  <button type="button">
-                      <span  class="btn-NuevoSitio"(click)="regresarSitio()">Regresar<i class="feather icon-arrow-left ms-2"></i></span>
-                  </button>
-            </div>
-          </div>
-        </form>
-      </app-card>
+                  }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" placeholder="Descripcion del sitio"
+                                name="validation-descripcion" [ngClass]="{
+                      'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
+                    }" #descripcion="ngModel" required [(ngModel)]="FormSitio.descripcion"></textarea>
+                            @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
+                            <label id="validation-descripcion-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">Por favor,
+                                ingrese una descripción. Este campo es obligatorio.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
+                                <option value>--Seleccione estado--</option>
+                                <option value="pitons">True</option>
+                                <option value="pitons">False</option>
+                            </select>
+                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                            <label id="validation-estado-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">La selección del
+                                estado es obligatoria.</label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </app-card>
     </div>
-  </div>
+</div>
