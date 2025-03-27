@@ -30,17 +30,6 @@ import { BasicAuthInterceptor } from 'src/app/theme/shared/_helpers/basic-auth.i
 
 // third party
 import { ToastrModule } from 'ngx-toastr';
-// import { AplicacionesModule } from './plataforma/aplicaciones/aplicaciones.module';
-// import { DashboardModule } from './demo/dashboard/dashboard.module';
-// import { LicenciasModule } from './plataforma/licencias/licencias.module';
-// import { SitesModule } from './plataforma/sites/sites.module';
-// import { UsuariosModule } from './plataforma/usuarios/usuarios.module';
-// import { FrontalModule } from './plataforma/frontal/frontal.module';
-// import { SuscriptorModule } from './plataforma/suscriptor/suscriptor.module';
-// import { LogsModule } from './plataforma/logs/logs.module';
-// import { HelpDeskModule } from './plataforma/help-desk/help-desk.module';
-// import { RolesModule } from './plataforma/roles/roles.module';
-// import { AuthModule } from './plataforma/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -66,18 +55,6 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     SharedModule,
     FormsModule,
-    // FrontalModule,
-    // AdministracionBDModule,
-    // SuscriptorModule,
-    // AplicacionesModule,
-    // LicenciasModule,
-    // LogsModule,
-    // UsuariosModule,
-    // HelpDeskModule,
-    // RolesModule,
-    // SitesModule,
-    // AuthModule,
-    // DashboardModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),

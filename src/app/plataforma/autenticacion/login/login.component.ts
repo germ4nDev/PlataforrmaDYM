@@ -82,8 +82,14 @@ export class LoginComponent implements OnInit {
       .login(this.formValues?.['username']?.value, this.formValues?.['password']?.value)
       .pipe(first())
       .subscribe({
-        next: () => {
-          this.router.navigate(['/dashboard/analytics']);
+        next: (user) => {
+            console.log('el usuario', user);
+          // RODO aui es donde se inicia la sesion de usuario
+          // aplicacionId
+          // fecha inicio
+          // fecha fin
+          // array de roles segun la aplicacionj
+          this.router.navigate(['/frontal/inicio']);
         },
         error: (error) => {
           this.error = error;

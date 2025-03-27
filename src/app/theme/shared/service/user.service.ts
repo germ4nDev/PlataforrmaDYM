@@ -9,6 +9,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<PTLsuarioAP[]>(`${environment.apiUrl}/users`);
+    return this.http.get<PTLsuarioAP[]>(`${environment.apiUrl}/PTLUsuariosAP`);
   }
 }

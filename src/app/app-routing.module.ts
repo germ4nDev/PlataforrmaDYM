@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/auth/signin-v2',
+        redirectTo: '/autenticacion/login',
         pathMatch: 'full'
       },
       {
@@ -111,11 +111,6 @@ const routes: Routes = [
           import('./plataforma/aplicaciones/aplicaciones.module').then((module) => module.AplicacionesModule)
       },
       {
-        path: 'frontal',
-        loadChildren: () =>
-          import('./plataforma/frontal/frontal.module').then((module) => module.FrontalModule)
-      },
-      {
         path: 'licencias',
         loadChildren: () =>
           import('./plataforma/licencias/licencias.module').then((module) => module.LicenciasModule)
@@ -145,11 +140,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./plataforma/roles/roles.module').then((module) => module.RolesModule)
       },
-      {
-        path: 'autenticacion',
-        loadChildren: () =>
-          import('./plataforma/autenticacion/autenticacion.module').then((module) => module.AutenticacionModule)
-      },
       // END PLATAFORMA DYM
 
       {
@@ -168,8 +158,13 @@ const routes: Routes = [
     component: GuestComponent,
     children: [
       {
-        path: 'auth',
-        loadChildren: () => import('./demo/pages/authentication/authentication.module').then((module) => module.AuthenticationModule)
+        path: 'autenticacion',
+        loadChildren: () => import('./plataforma/autenticacion/autenticacion.module').then((module) => module.AutenticacionModule)
+      },
+      {
+        path: 'frontal',
+        loadChildren: () =>
+          import('./plataforma/frontal/frontal.module').then((module) => module.FrontalModule)
       },
       {
         path: 'maintenance',
