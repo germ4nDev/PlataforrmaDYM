@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-sm-12">
-      <app-card cardTitle="Formulario de Sitios">
+      <app-card cardTitle="Formulario de Enlaces">
         <div class="card-header">
-            <h3>Nuevo Sitio</h3>
+            <h3>Nuevo Enlace</h3>
         </div>
         <form #validationForm="ngForm" class="editForm" novalidate>
           <div class="row">
@@ -14,18 +14,18 @@
                   id="nombre"
                   name="nombre"
                   type="text"
-                  placeholder="nombre del sitio"
+                  placeholder="nombre del enlace"
                   [ngClass]="{
                     'is-invalid': !nombre.valid && (nombre.dirty || nombre.touched || isSubmit)
                   }"
                   #nombre="ngModel"
                   required
                   nombre
-                  [(ngModel)]="FormSitio.nombre"
+                  [(ngModel)]="FormEnlace.nombre"
                 />
                 @if (!nombre.valid && (nombre.dirty || nombre.touched || isSubmit)) {
                   <label id="validation-nombre-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >Por favor, Ingrese un nombre. Este campo es obligatorio..</label
+                    >Por favor, ingrese un nombre. Este campo es obligatorio.</label
                   >
                 }
               </div>
@@ -35,14 +35,14 @@
                   <label class="form-label">Descripción</label>
                   <textarea
                     class="form-control"
-                    placeholder="Descripcion del sitio"
+                    placeholder="Descripcion del enlace"
                     name="validation-descripcion"
                     [ngClass]="{
                       'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
                     }"
                     #descripcion="ngModel"
                     required
-                    [(ngModel)]="FormSitio.descripcion"
+                    [(ngModel)]="FormEnlace.descripcion"
                   ></textarea>
                   @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
                     <label id="validation-descripcion-error" class="error jquery-validation-error small form-text invalid-feedback"
@@ -53,23 +53,23 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                  <label class="form-label">URL</label>
+                  <label class="form-label">Ruta</label>
                   <input
                     type="text"
                     class="form-control"
-                    name="validation-url"
-                    placeholder="URL del sitio"
+                    name="validation-ruta"
+                    placeholder="ruta del enlace"
                     [ngClass]="{
-                      'is-invalid': !url.valid && (url.dirty || url.touched || isSubmit)
+                      'is-invalid': !ruta.valid && (ruta.dirty || ruta.touched || isSubmit)
                     }"
-                    #url="ngModel"
+                    #ruta="ngModel"
                     required
-                    url
-                    [(ngModel)]="FormSitio.url"
+                    ruta
+                    [(ngModel)]="FormEnlace.ruta"
                   />
-                  @if (!url.valid && (url.dirty || url.touched || isSubmit)) {
-                    <label id="validation-url-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es obligatorio.</label
+                  @if (!ruta.valid && (ruta.dirty || ruta.touched || isSubmit)) {
+                    <label id="validation-ruta-error" class="error jquery-validation-error small form-text invalid-feedback"
+                      >Por favor, ingrese una ruta válida, por ejemplo: https://www.plataformadym.com. Este campo es obligatorio.</label
                     >
                   }
                 </div>
@@ -86,7 +86,7 @@
                   }"
                   #estado="ngModel"
                   required
-                  [(ngModel)]="FormSitio.estado"
+                  [(ngModel)]="FormEnlace.estado"
                 >
                   <option value>--Seleccione estado--</option>
                     <option value="pitons">True</option>

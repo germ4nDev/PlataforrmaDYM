@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 
 @Component({
@@ -9,38 +10,32 @@ import { DataTableDirective, DataTablesModule } from 'angular-datatables';
   styleUrls: ['./enlaces.component.css']
 })
 export class EnlacesComponent implements OnInit, AfterViewInit  {
+    [x: string]: any;
 dtColumnSearchingOptions: object = {};
   @ViewChild(DataTableDirective)
   datatableElement!: DataTableDirective;
 
-  // life cycle event
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.dtColumnSearchingOptions = {
       ajax: 'fake-data/datatable-data.json',
       columns: [
         {
-          title: 'Name',
-          data: 'name'
+          title: 'Nombre',
+          data: 'nombre'
         },
         {
-          title: 'Position',
-          data: 'position'
+          title: 'Descripción',
+          data: 'descripción'
         },
         {
-          title: 'Office',
-          data: 'office'
+          title: 'Ruta',
+          data: 'Ruta'
         },
         {
-          title: 'Age',
-          data: 'age'
-        },
-        {
-          title: 'Start Date',
-          data: 'date'
-        },
-        {
-          title: 'Salary',
-          data: 'salary'
+          title: 'Estado',
+          data: 'estado'
         }
       ],
       responsive: true
@@ -59,5 +54,9 @@ dtColumnSearchingOptions: object = {};
         });
       });
     });
+  }
+
+  nuevoEnlace() {
+    this.router.navigate(['/sites/new-enlace']);
   }
 }
