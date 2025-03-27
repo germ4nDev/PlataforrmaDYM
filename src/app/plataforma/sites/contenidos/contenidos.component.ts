@@ -1,46 +1,42 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-contenidos',
   standalone: true,
-    imports: [DataTablesModule],
+  imports: [DataTablesModule],
   templateUrl: './contenidos.component.html',
   styleUrls: ['./contenidos.component.css']
 })
-export class ContenidosComponent implements OnInit {
+export class ContenidosComponent implements OnInit, AfterViewInit {
+    [x: string]: any;
+
 dtColumnSearchingOptions: object = {};
   @ViewChild(DataTableDirective)
   datatableElement!: DataTableDirective;
 
+  constructor(private router: Router) {}
   // life cycle event
   ngOnInit() {
     this.dtColumnSearchingOptions = {
       ajax: 'fake-data/datatable-data.json',
       columns: [
         {
-          title: 'Name',
-          data: 'name'
+          title: 'Nombre',
+          data: 'nombre'
         },
         {
-          title: 'Position',
-          data: 'position'
+          title: 'Descripción',
+          data: 'descripción'
         },
         {
-          title: 'Office',
-          data: 'office'
+          title: 'Contenido',
+          data: 'Contenido'
         },
         {
-          title: 'Age',
-          data: 'age'
-        },
-        {
-          title: 'Start Date',
-          data: 'date'
-        },
-        {
-          title: 'Salary',
-          data: 'salary'
+          title: 'Estado',
+          data: 'estado'
         }
       ],
       responsive: true
@@ -60,4 +56,9 @@ dtColumnSearchingOptions: object = {};
       });
     });
   }
+
+  nuevoContenido() {
+    this.router.navigate(['/sites/new-contenido']);
+  }
 }
+

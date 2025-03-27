@@ -36,9 +36,9 @@ export default class AuthSigninV2Component implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/dashboard/analytics']);
-    }
+    // if (this.authenticationService.currentUserValue) {
+    //   this.router.navigate(['/dashboard/analytics']);
+    // }
   }
 
   ngOnInit() {
@@ -83,7 +83,7 @@ export default class AuthSigninV2Component implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.router.navigate(['/dashboard/analytics']);
+          this.router.navigate(['/frontal/inicio']);
         },
         error: (error) => {
           this.error = error;
