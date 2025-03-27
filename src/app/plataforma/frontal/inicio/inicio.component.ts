@@ -1,3 +1,4 @@
+
 // angular import
 import { Component, OnInit } from '@angular/core';
 
@@ -36,3 +37,4 @@ export class InicioComponent implements OnInit {
         this.router.navigate(['/dashboard/analytics']);
     }
 }
+
