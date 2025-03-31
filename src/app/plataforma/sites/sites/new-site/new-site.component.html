@@ -1,4 +1,4 @@
-<app-card cardTitle="Formulario de Sitios" class="sticky-card">
+<app-card cardTitle="Administración de Sitios" class="sticky-card">
     <div class="text-center mt-3">
         <div class="d-flex gap-3">
             <button type="button">
@@ -20,7 +20,7 @@
             </div>
             <form #validationForm="ngForm" class="editForm" novalidate>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-control-label" for="nombre">Nombre</label>
                             <input class="form-control input-md" id="nombre" name="nombre" type="text"
@@ -34,7 +34,7 @@
                             }
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">URL</label>
                             <input type="text" class="form-control" name="validation-url" placeholder="URL del sitio"
@@ -49,7 +49,7 @@
                             }
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Estado</label>
                             <select class="form-control" title="select" name="validation-estado" [ngClass]="{
