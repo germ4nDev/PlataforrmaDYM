@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Column Searching</h5>
+                <h5>Contenidos</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -10,21 +10,24 @@
                         class="table table-striped row-border table-hover">
                         <tfoot>
                             <tr>
-                                <th><input type="text" placeholder="Search Name" name="search-name"
+                                <th><input type="text" placeholder="Filtro Nombre" name="Filtro-nombre"
                                         class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Position" name="search-position"
+                                <th><input type="text" placeholder="Filtro Descripción" name="Filtro-descripcion"
                                         class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Office" name="search-office"
+                                <th><input type="text" placeholder="Filtro Contenido" name="Filtro-contenido"
                                         class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Age" name="search-age"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Satrt Date" name="search-date"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Salary" name="search-salary"
+                                <th><input type="text" placeholder="Filtro Estado" name="Filtro-estado"
                                         class="form-control" /></th>
                             </tr>
                         </tfoot>
                     </table>
+                </div>
+                <div class="text-center mt-3">
+                    <div class="d-flex justify-content-center gap-3">
+                        <button type="button">
+                            <span class="btn-nuevoContenido" (click)="nuevoContenido()">Nuevo Contenido</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

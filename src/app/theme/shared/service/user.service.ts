@@ -2,13 +2,13 @@
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { User } from '../_helpers/user';
+import { PTLUsuarioAP } from '../_helpers/models/PTLUsuarioAP.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
+    return this.http.get<PTLUsuarioAP[]>(`${environment.apiUrl}/PTLUsuariosAP`);
   }
 }

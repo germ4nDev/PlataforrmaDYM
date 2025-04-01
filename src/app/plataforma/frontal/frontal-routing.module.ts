@@ -13,14 +13,6 @@ const routes: Routes = [
         {
             path: 'gestion-inicio',
             loadComponent: () => import('./inicio/gestion-inicio/gestion-inicio.component').then(m => m.GestionInicioComponent)
-        },
-        {
-            path: 'login',
-            loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
-        },
-        {
-            path: 'gestion-login',
-            loadComponent: () => import('./login/gestion-login/gestion-login.component').then(m => m.GestionLoginComponent)
         }
     ]
   }

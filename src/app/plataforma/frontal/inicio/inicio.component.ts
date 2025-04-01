@@ -1,63 +1,40 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { DataTablesModule, DataTableDirective } from 'angular-datatables';
+
+// angular import
+import { Component, OnInit } from '@angular/core';
+
+// project import
+import { SharedModule } from 'src/app/theme/shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+// bootstrap import
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
+// third party
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [DataTablesModule],
+  imports: [NgbDropdownModule, RouterModule, ColorPickerModule, SharedModule],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
-export class InicioComponent implements OnInit, AfterViewInit {
-dtColumnSearchingOptions: object = {};
-  @ViewChild(DataTableDirective)
-  datatableElement!: DataTableDirective;
+export class InicioComponent implements OnInit {
 
-  // life cycle event
-  ngOnInit() {
-    this.dtColumnSearchingOptions = {
-      ajax: 'fake-data/datatable-data.json',
-      columns: [
-        {
-          title: 'Name',
-          data: 'name'
-        },
-        {
-          title: 'Position',
-          data: 'position'
-        },
-        {
-          title: 'Office',
-          data: 'office'
-        },
-        {
-          title: 'Age',
-          data: 'age'
-        },
-        {
-          title: 'Start Date',
-          data: 'date'
-        },
-        {
-          title: 'Salary',
-          data: 'salary'
-        }
-      ],
-      responsive: true
-    };
-  }
+    constructor (
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
-  ngAfterViewInit(): void {
-    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
-      dtInstance.columns().every(function () {
-        // eslint-disable-next-line
-        const input = $('input', this.footer()) as any;
-        input.on('keyup change', () => {
-          if (this.search() !== input.val()) {
-            this.search(input.val()).draw();
-          }
-        });
-      });
-    });
-  }
+    ngOnInit(): void {
+        console.log('ingresa a la plataforma');
+    }
+
+    ingresarPlataforma() {
+        const appId = 'asdfas-sdafsd-asdfsdf';
+        localStorage.setItem('aplicacionId', appId)
+        this.router.navigate(['/dashboard/analytics']);
+    }
 }
+
