@@ -1,4 +1,4 @@
-export class PTLsuarioRoleAP {
+export class PTLUsuarioRoleAP {
     constructor (
         public usuarioRolId : number,
         public usuarioId : number,
