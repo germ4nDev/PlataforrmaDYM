@@ -1,4 +1,4 @@
-export class PTLUsarioAP {
+export class PTLUsuarioAP {
     constructor (
         public usuarioId : number,
         public aplicacionId : number,

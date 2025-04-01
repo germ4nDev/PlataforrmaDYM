@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PTLSitiosAP } from '../_helpers/models/PTLSitioAP.model';
 import { map } from 'rxjs/operators';
-import { PTLUsarioAP } from '../_helpers/models/PTLUsuarioAP.model';
+import { PTLUsuarioAP } from '../_helpers/models/PTLUsuarioAP.model';
 
 const base_url = environment.apiUrl;
 
@@ -12,7 +12,7 @@ const base_url = environment.apiUrl;
   providedIn: 'root'
 })
 export class PTLSitiosAPService {
-    user : PTLUsarioAP = new PTLUsarioAP(0, 0, '', '', '', false, '');
+    user : PTLUsuarioAP = new PTLUsuarioAP(0, 0, '', '', '', false, '');
 
     constructor(private http: HttpClient) { }
 
