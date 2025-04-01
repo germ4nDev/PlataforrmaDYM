@@ -1,4 +1,4 @@
-export class PTLsuarioST {
+export class PTLUsarioST {
     constructor (
         public usuarioId : number,
         public suscriptorId : number,
