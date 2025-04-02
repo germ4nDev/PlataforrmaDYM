@@ -1,6 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { Router} from '@angular/router';
+import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.model';
+import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
+import { data } from '../../../fack-db/series-data';
 
 @Component({
   selector: 'app-sites',
@@ -16,9 +19,12 @@ dtColumnSearchingOptions: object = {};
   @ViewChild(DataTableDirective)
   datatableElement!: DataTableDirective;
 
-  constructor(private router: Router) {}
+  sitiosAP: PTLSitiosAP[]=[];
+
+  constructor(private router: Router, private sitiosService:PTLSitiosAPService) {}
   // life cycle event
   ngOnInit() {
+    this.consultarSitios();
     this.dtColumnSearchingOptions = {
       ajax: 'fake-data/datatable-data.json',
       columns: [
@@ -41,6 +47,12 @@ dtColumnSearchingOptions: object = {};
       ],
       responsive: true
     };
+  }
+  consultarSitios () {
+this.sitiosService.getSitios().subscribe((sitios:any) => {
+    console.log('Todos los sitios', sitios.resp.data);
+    this.sitiosAP = sitios.resp.data;
+});
   }
 
   ngAfterViewInit(): void {

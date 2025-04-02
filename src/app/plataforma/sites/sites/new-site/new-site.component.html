@@ -50,18 +50,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Estado</label>
-                            <select class="form-control" title="select" name="validation-estado" [ngClass]="{
-                    'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
-                  }" #estado="ngModel" required [(ngModel)]="FormSitio.estado">
-                                <option value>--Seleccione estado--</option>
-                                <option value="pitons">True</option>
-                                <option value="pitons">False</option>
-                            </select>
-                            @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
-                            <label id="validation-estado-error"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                La selección del estado es obligatoria.</label>
-                            }
+                            <div class="radio-input">
+                                <div class="radio-item">
+                                    <input name="radio" type="radio" class="input" id="radio-true" checked="" >
+                                    <label for="radio-true">Activo</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input name="radio" type="radio" class="input" id="radio-false">
+                                    <label for="radio-false">Inactivo</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">

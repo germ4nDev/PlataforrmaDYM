@@ -33,14 +33,14 @@ export class PTLSitiosAPService {
     }
 
     getSitios() {
-        const url = `${ base_url }/PTLSitiosAP`;  // TODO reemplazar por la ruta actual del servicio
+        const url = `${ base_url }/api/PTLSitiosAP/ListaSitios`;
         return this.http.get<PTLSitiosAP[]>( url, this.headers )
         .pipe(
             map((resp: PTLSitiosAP[]) => {
                 console.log('respuesta servicio', resp);
                 return {
                     ok: true,
-                    sitios: resp
+                    resp
                 };
             })
         );
