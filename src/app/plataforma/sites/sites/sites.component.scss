@@ -44,3 +44,11 @@ button {
     transform: scale(0.9);
   }
 
+  .sticky-card {
+    position: sticky;
+    top: 0;
+    background: transparent;
+    z-index: 10;
+    padding: 50px;
+}
+

@@ -1,7 +1,8 @@
 <app-card cardTitle="Administración de Sitios" class="sticky-card">
+    <hr/>
         <div class="justify-content-end d-flex gap-3">
             <button type="button">
-                <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i
+                <span class="btn-NuevoSitio" (click)="confirmAlert()" (click)="save(validationForm)">Insertar<i
                         class="feather icon-plus ms-2"></i></span>
             </button>
             <button type="button">
@@ -20,11 +21,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="nombre">Nombre</label>
+                            <label class="form-control-label" for="nombre">nombre</label>
                             <input class="form-control input-md" id="nombre" name="nombre" type="text"
                                 placeholder="nombre del sitio" [ngClass]="{
                     'is-invalid': !nombre.valid && (nombre.dirty || nombre.touched || isSubmit)
-                  }" #nombre="ngModel" required nombre [(ngModel)]="FormSitio.nombre" />
+                  }" #nombre="ngModel" required puertoSitio [(ngModel)]="FormSitio.nombre" />
                             @if (!nombre.valid && (nombre.dirty || nombre.touched || isSubmit)) {
                             <label id="validation-nombre-error"
                                 class="error jquery-validation-error small form-text invalid-feedback">
@@ -44,6 +45,20 @@
                                 class="error jquery-validation-error small form-text invalid-feedback">Por favor,
                                 ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es
                                 obligatorio.</label>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="puertoSitio">Prueto Sitio</label>
+                            <input class="form-control input-md" id="puertoSitio" name="puertoSitio" type="text"
+                                placeholder="Puerto del sitio" [ngClass]="{
+                    'is-invalid': !puertoSitio.valid && (puertoSitio.dirty || puertoSitio.touched || isSubmit)
+                  }" #puertoSitio="ngModel" required puertoSitio [(ngModel)]="FormSitio.puertoSitio" />
+                            @if (!puertoSitio.valid && (puertoSitio.dirty || puertoSitio.touched || isSubmit)) {
+                            <label id="validation-puertoSitio-error"
+                                class="error jquery-validation-error small form-text invalid-feedback">
+                                Por favor, Ingrese el puerto del sitio. Este campo es obligatorio..</label>
                             }
                         </div>
                     </div>

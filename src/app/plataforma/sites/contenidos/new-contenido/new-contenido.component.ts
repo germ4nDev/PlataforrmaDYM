@@ -51,9 +51,9 @@ export class NewContenidoComponent implements OnInit {
   }
 
   insertarSitio() {
-    this.router.navigate(['/sites/new-site']);
+    this.router.navigate(['/sites/new-contenido']);
   }
-  regresarSitio() {
-    this.router.navigate(['/sites/sites']);
+  regresarContenido() {
+    this.router.navigate(['/sites/contenidos']);
   }
 }
