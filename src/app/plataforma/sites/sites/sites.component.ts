@@ -5,12 +5,11 @@ import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.mod
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CardComponent } from "../../../theme/shared/components/card/card.component";
 
 @Component({
   selector: 'app-sites',
   standalone: true,
-  imports: [CommonModule, DataTablesModule, CardComponent],
+  imports: [CommonModule, DataTablesModule],
   templateUrl: './sites.component.html',
   styleUrl: './sites.component.scss'
 })
@@ -27,14 +26,14 @@ dtColumnSearchingOptions: DataTables.Settings = {};
 
   ngOnInit() {
     this.dtColumnSearchingOptions = {
-        // pagingType: 'full_numbers',
         responsive: true,
         columns: [
           { title: 'Nombre', data: 'nombreSitio' },
           { title: 'Descripción', data: 'descripcionSitio' },
           { title: 'URL', data: 'urlSitio' },
           { title: 'Puerto Sitio', data: 'puertoSitio' },
-          { title: 'Estado', data: 'estadoSitio' }
+          { title: 'Estado', data: 'estadoSitio' },
+          { title: 'Opciones', data: 'opciones' },
         ]
       };
 

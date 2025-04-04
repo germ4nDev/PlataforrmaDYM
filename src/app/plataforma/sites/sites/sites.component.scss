@@ -51,4 +51,23 @@ button {
     z-index: 10;
     padding: 50px;
 }
+// Scroll tablas
+.card-body {
+    position: relative;
+    height: 440px;
+}
+
+.table-responsive {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.btnEdit {
+    color: #c9d0d5;
+}
+.btnDelet{
+
+    color: #c9d0d5;
+}
+
 
