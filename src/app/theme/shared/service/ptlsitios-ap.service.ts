@@ -45,4 +45,30 @@ export class PTLSitiosAPService {
             })
         );
     }
+
+    getSitioById(id: number) {
+        const url = `${base_url}/api/PTLSitiosAP/GetSitioById/${id}`;
+        return this.http.get(url, this.headers)
+        .pipe(
+            map((resp: any) => {
+                console.log('respuesta servicio Id', resp);
+                return resp;
+            })
+        );
+        }
+
+
+    insertarSitio(sitio: PTLSitiosAP) {
+        const url = `${base_url}/api/PTLSitiosAP/PostInsertarSitios`;
+        return this.http.post<{ ok: boolean, mensaje: string }>(url, sitio, this.headers)
+            .pipe(
+                map(resp => {
+                    console.log('respuesta servicio insertar', resp);
+                    return {
+                        ok: true,
+                        resp
+                    };
+                })
+            );
+        }
 }

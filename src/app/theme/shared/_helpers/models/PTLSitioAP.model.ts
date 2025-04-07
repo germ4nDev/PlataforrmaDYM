@@ -4,8 +4,8 @@ export class PTLSitiosAP {
         public aplicacionId : number,
         public nombreSitio : string,
         public descripcionSitio : string,
-        public utlSitio : string,
+        public urlSitio : string,
         public puertoSitio : number,
-        public estadoSitio : number
+        public estadoSitio : boolean
    ) {}
 }

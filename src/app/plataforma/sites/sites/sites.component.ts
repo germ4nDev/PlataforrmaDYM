@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sites.component.scss'
 })
 export class SitesComponent implements OnInit, AfterViewInit {
-    [x: string]: any;
+    // [x: string]: any;
     @ViewChild(DataTableDirective, { static: false })
     datatableElement!: DataTableDirective;
 
@@ -40,12 +40,12 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       this.consultarSitios();
   }
   consultarSitios () {
-this.sitiosService.getSitios().subscribe((sitios:any) => {
-    console.log('Todos los sitios', sitios.resp.data);
-    this.sitiosAP = sitios.resp.data;
-    this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
-});
-  }
+    this.sitiosService.getSitios().subscribe((sitios:any) => {
+        console.log('Todos los sitios', sitios.resp.data);
+        this.sitiosAP = sitios.resp.data;
+        this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
+    });
+    }
 
   ngAfterViewInit(): void {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -78,4 +78,10 @@ this.sitiosService.getSitios().subscribe((sitios:any) => {
   nuevoSitio() {
     this.router.navigate(['/sites/new-site']);
   }
+
+  editarSitio(id: number) {
+    this.router.navigate(['/sites/new-site'], { queryParams: { sitioId: id } });
+  }
+
+
 }

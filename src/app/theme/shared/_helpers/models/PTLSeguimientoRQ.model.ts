@@ -1,6 +1,6 @@
 export class PTLSeguimientoRQ {
     constructor (
-        public sieguimientoId : number,
+        public seguimientoId : number,
         public requerimientoId : number,
         public nombreSeguimiento : string,
         public descripcionSeguimiento : string,
