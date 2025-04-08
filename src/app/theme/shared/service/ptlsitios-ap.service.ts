@@ -33,16 +33,69 @@ export class PTLSitiosAPService {
     }
 
     getSitios() {
-        const url = `${ base_url }/PTLSitiosAP`;  // TODO reemplazar por la ruta actual del servicio
+        const url = `${ base_url }/api/PTLSitiosAP/ListaSitios`;
         return this.http.get<PTLSitiosAP[]>( url, this.headers )
         .pipe(
             map((resp: PTLSitiosAP[]) => {
                 console.log('respuesta servicio', resp);
                 return {
                     ok: true,
-                    sitios: resp
+                    resp
                 };
             })
         );
     }
+
+    getSitioById(id: number) {
+        const url = `${base_url}/api/PTLSitiosAP/GetSitioById/${id}`;
+        return this.http.get(url, this.headers)
+        .pipe(
+            map((resp: any) => {
+                console.log('respuesta servicio Id', resp);
+                return resp;
+            })
+        );
+        }
+
+
+    insertarSitio(sitio: PTLSitiosAP) {
+        const url = `${base_url}/api/PTLSitiosAP/PostInsertarSitios`;
+        return this.http.post<{ ok: boolean, mensaje: string }>(url, sitio, this.headers)
+            .pipe(
+                map(resp => {
+                    console.log('respuesta servicio insertar', resp);
+                    return {
+                        ok: true,
+                        resp
+                    };
+                })
+            );
+        }
+
+    modificarSitio(sitio: PTLSitiosAP) {
+        const url = `${base_url}/api/PTLSitiosAP/PutModificarSitio`;
+        return this.http.put<{ ok: boolean, mensaje: string }>(url, sitio, this.headers)
+        .pipe(
+            map(resp => {
+            console.log('respuesta servicio modificar', resp);
+            return {
+                ok: true,
+                resp
+            };
+            })
+        );
+    }
+
+    eliminarSitio(id: number) {
+        const url = `${base_url}/api/PTLSitiosAP/DeleteSitio/${id}`;
+        return this.http.delete<{ ok: boolean, mensaje: string }>(url, this.headers)
+          .pipe(
+            map(resp => {
+              console.log('respuesta servicio eliminar', resp);
+              return resp;
+            })
+          );
+      }
+
+
 }

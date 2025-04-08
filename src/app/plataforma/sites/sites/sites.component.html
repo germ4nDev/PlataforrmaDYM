@@ -2,34 +2,93 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Sitios</h5>
+                <h5>Filtros</h5>
+                <!-- <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+                    <tr>
+                        <th>
+                            <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
+                                #nombreSitio (keyup)="filtrarColumna(0, nombreSitio.value)" />
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Filtro Puerto Sitio" name="filtro-sitio"
+                                class="form-control" #puertoSitio (keyup)="filtrarColumna(3, puertoSitio.value)" />
+                        </th>
+                        <th>
+                            <input type="text" placeholder="Filtro Estado" name="filtro-estado" class="form-control"
+                                #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
+                        </th>
+                    </tr>
+                </div>
+                <hr /> -->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table datatable [dtOptions]="dtColumnSearchingOptions"
                         class="table table-striped row-border table-hover">
-                        <tfoot>
+                        <thead>
                             <tr>
-                                <th><input type="text" placeholder="Filtro Nombre" name="search-name"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Filtro Descripción" name="search-position"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Filtro URL" name="search-office"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Filtro Estado" name="search-age"
-                                        class="form-control" /></th>
+                                <th>
+                                    <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
+                                        #nombreSitio (keyup)="filtrarColumna(0, nombreSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro descripción" name="filtro-nombre" class="form-control"
+                                        #descripcionSitio (keyup)="filtrarColumna(1, descripcionSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro url" name="filtro-url" class="form-control"
+                                        #urlSitio (keyup)="filtrarColumna(2, urlSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro Puerto Sitio" name="filtro-sitio"
+                                        class="form-control" #puertoSitio (keyup)="filtrarColumna(3, puertoSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro Estado" name="filtro-estado" class="form-control"
+                                        #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
+                                </th>
                             </tr>
-                        </tfoot>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>URL</th>
+                                <th>Puerto Sitio</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sitio of sitiosAP">
+                                <td>{{ sitio.nombreSitio }}</td>
+                                <td>{{ sitio.descripcionSitio }}</td>
+                                <td>{{ sitio.urlSitio }}</td>
+                                <td>{{ sitio.puertoSitio }}</td>
+                                <td>{{ getEstado(sitio.estadoSitio)}}</td>
+                                <td style="text-align: center; width: 10%;">
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <imput type="button" class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                        (click)="editarSitio(sitio.sitioId)">
+                                            <i class="feather icon-edit"></i>
+                                        </imput>
+                                        <imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                        (click)="eliminarSitio(sitio.sitioId)">
+                                            <i class="feather icon-trash-2"></i>
+                                        </imput>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
-                <div class="text-center mt-3">
-                    <div class="d-flex justify-content-center gap-3">
-                        <button type="button">
-                            <span class="btn-NuevoSitio" (click)="nuevoSitio()">Nuevo Sitio</span>
-                        </button>
-                    </div>
+            </div>
+            <div class="text-center">
+                <div class="d-flex justify-content-center gap-3">
+                    <button type="button">
+                        <span class="btn-NuevoSitio" (click)="nuevoSitio()">Nuevo Sitio</span>
+                    </button>
                 </div>
             </div>
+            <hr>
         </div>
     </div>
 </div>
