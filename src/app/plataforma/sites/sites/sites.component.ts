@@ -7,10 +7,13 @@ import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
+// project import
+import { SharedModule } from 'src/app/theme/shared/shared.module';
+
 @Component({
   selector: 'app-sites',
   standalone: true,
-  imports: [CommonModule, DataTablesModule],
+  imports: [CommonModule, DataTablesModule, SharedModule],
   templateUrl: './sites.component.html',
   styleUrl: './sites.component.scss'
 })
