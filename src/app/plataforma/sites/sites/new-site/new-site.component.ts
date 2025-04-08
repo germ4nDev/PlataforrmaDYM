@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // project import
@@ -7,13 +7,18 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 // third party
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 
 export class FormSitio {
-  nombre!: string;
-  descripcion!: string;
-  url!: string;
-  estado!: string;
+  sitioId!: number;
+  aplicacionId!: number;
+  nombreSitio!: string;
+  descripcionSitio!: string;
+  urlSitio!: string;
+  estadoSitio!: boolean;
+  puertoSitio!: number;
 }
 
 @Component({
@@ -24,38 +29,94 @@ export class FormSitio {
     styleUrl: './new-site.component.scss'
   })
 export class NewSiteComponent implements OnInit {
-
   // private props
   FormSitio!: FormSitio;
   form: undefined;
   isSubmit: boolean;
+  modoEdicion: boolean = false;
+
 
   // constructor
-  constructor(private router: Router) {
+  constructor(private router: Router,
+     private sitiosService:PTLSitiosAPService,
+     private route: ActivatedRoute,) {
     this.isSubmit = false;
   }
 
-  // life cycle event
   ngOnInit() {
-    this.FormSitio = {
-      nombre: '',
-      descripcion: '',
-      url: '',
-      estado: '',
-    };
+    this.route.queryParams.subscribe(params => {
+      const id = params['sitioId'];
+      console.log('me llena el Id', id);
+
+      if (id) {
+        this.modoEdicion = true;
+        this.sitiosService.getSitioById(+id).subscribe({
+          next: (resp: any) => {
+            this.FormSitio = resp.data;
+          },
+          error: () => {
+            Swal.fire('Error', 'No se pudo obtener el sitio', 'error');
+          }
+        });
+      }
+      else {
+        this.modoEdicion = false;
+        this.FormSitio = {
+          sitioId: 0,
+          aplicacionId: 0,
+          nombreSitio: '',
+          descripcionSitio: '',
+          urlSitio: '',
+          puertoSitio: 0,
+          estadoSitio: true
+        };
+      }
+    });
   }
 
-  save(form: { valid: undefined }) {
+  btnInsertEditSitios(form: any) {
+    this.isSubmit = true;
+
     if (!form.valid) {
-      this.isSubmit = true;
       return;
     }
+
+    if (this.modoEdicion) {
+        this.sitiosService.modificarSitio(this.FormSitio).subscribe({
+          next: (resp: any) => {
+            if (resp.ok) {
+              Swal.fire('', 'El sitio se modificó correctamente', 'success');
+              this.router.navigate(['/sites/sites']);
+            } else {
+              Swal.fire('Error', resp.message || 'No se pudo actualizar el sitio', 'error');
+            }
+          },
+          error: (err: any) => {
+            console.error(err);
+            Swal.fire('Error', 'No se pudo actualizar el sitio', 'error');
+          }
+        });
+      }
+      else
+      {
+        this.sitiosService.insertarSitio(this.FormSitio).subscribe({
+            next: (resp:any) => {
+              if (resp.ok) {
+                Swal.fire('', 'El sitio se insertó correctamente', 'success');
+                form.resetForm();
+                this.isSubmit = false;
+                this.router.navigate(['/sites/sites']);
+              }
+            },
+            error: (err:any) => {
+              console.error(err);
+              Swal.fire('Error', 'No se pudo insertar el sitio', 'error');
+            }
+          });
+      }
   }
 
-  insertarSitio() {
-    this.router.navigate(['/sites/new-site']);
-  }
-  regresarSitio() {
+  btnRegresarSitio() {
     this.router.navigate(['/sites/sites']);
   }
 }

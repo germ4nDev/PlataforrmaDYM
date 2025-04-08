@@ -52,10 +52,10 @@ export class NewEnlaceComponent implements OnInit {
     }
   }
 
-  insertarSitio() {
-    this.router.navigate(['/sites/new-site']);
+  insertarEnlace() {
+    this.router.navigate(['/sites/new-enlace']);
   }
-  regresarSitio() {
-    this.router.navigate(['/sites/sites']);
+  regresarEnlace() {
+    this.router.navigate(['/sites/enlaces']);
   }
 }

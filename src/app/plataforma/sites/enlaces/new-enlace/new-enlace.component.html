@@ -1,3 +1,15 @@
+<app-card cardTitle="Administración de Enlaces" class="sticky-card">
+    <div class="justify-content-end d-flex gap-3">
+        <button type="button">
+            <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i
+                    class="feather icon-plus ms-2"></i></span>
+        </button>
+        <button type="button">
+            <span class="btn-NuevoSitio" (click)="regresarEnlace()">Regresar<i
+                    class="feather icon-arrow-left ms-2"></i></span>
+        </button>
+    </div>
+</app-card>
 <div class="row">
     <div class="col-sm-12">
       <app-card cardTitle="Formulario de Enlaces">
@@ -29,27 +41,6 @@
                   >
                 }
               </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">Descripción</label>
-                  <textarea
-                    class="form-control"
-                    placeholder="Descripcion del enlace"
-                    name="validation-descripcion"
-                    [ngClass]="{
-                      'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
-                    }"
-                    #descripcion="ngModel"
-                    required
-                    [(ngModel)]="FormEnlace.descripcion"
-                  ></textarea>
-                  @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
-                    <label id="validation-descripcion-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una descripción. Este campo es obligatorio.</label
-                    >
-                  }
-                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -99,15 +90,26 @@
                 }
               </div>
             </div>
-          </div>
-          <div class="text-center mt-3">
-            <div class="d-flex justify-content-center gap-3">
-                <button type="button">
-                    <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i class="feather icon-plus ms-2"></i></span>
-                  </button>
-                  <button type="button">
-                      <span  class="btn-NuevoSitio"(click)="regresarSitio()">Regresar<i class="feather icon-arrow-left ms-2"></i></span>
-                  </button>
+            <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-label">Descripción</label>
+                  <textarea
+                    class="form-control"
+                    placeholder="Descripcion del enlace"
+                    name="validation-descripcion"
+                    [ngClass]="{
+                      'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
+                    }"
+                    #descripcion="ngModel"
+                    required
+                    [(ngModel)]="FormEnlace.descripcion"
+                  ></textarea>
+                  @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
+                    <label id="validation-descripcion-error" class="error jquery-validation-error small form-text invalid-feedback"
+                      >Por favor, ingrese una descripción. Este campo es obligatorio.</label
+                    >
+                  }
+                </div>
             </div>
           </div>
         </form>

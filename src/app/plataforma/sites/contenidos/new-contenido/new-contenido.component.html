@@ -1,6 +1,18 @@
+<app-card cardTitle="Administración de Contenidos" class="sticky-card">
+    <div class="justify-content-end d-flex gap-3">
+        <button type="button">
+            <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i
+                    class="feather icon-plus ms-2"></i></span>
+        </button>
+        <button type="button">
+            <span class="btn-NuevoSitio" (click)="regresarContenido()">Regresar<i
+                    class="feather icon-arrow-left ms-2"></i></span>
+        </button>
+    </div>
+</app-card>
 <div class="row">
     <div class="col-sm-12">
-      <app-card cardTitle="Formulario de Contenidos">
+      <app-card cardTitle="">
         <div class="card-header">
             <h3>Nuevo Contenido</h3>
         </div>
@@ -32,6 +44,30 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
+                  <label class="form-label">Estado</label>
+                  <select
+                    class="form-control"
+                    title="select"
+                    name="validation-estado"
+                    [ngClass]="{
+                      'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
+                    }"
+                    #estado="ngModel"
+                    required
+                    [(ngModel)]="FormContenido.estado"
+                  >
+                    <option value>--Seleccione estado--</option>
+                      <option value="pitons">True</option>
+                      <option value="pitons">False</option>
+                  </select>
+                  @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
+                    <label id="validation-estado-error" class="error jquery-validation-error small form-text invalid-feedback"
+                      >La selección del estado es obligatoria.</label>
+                  }
+                </div>
+              </div>
+            <div class="col-md-12">
+                <div class="form-group">
                   <label class="form-label">Descripción</label>
                   <textarea
                     class="form-control"
@@ -51,7 +87,7 @@
                   }
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-label">Contenido</label>
                   <textarea
@@ -71,41 +107,6 @@
                     >
                   }
                 </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label">Estado</label>
-                <select
-                  class="form-control"
-                  title="select"
-                  name="validation-estado"
-                  [ngClass]="{
-                    'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
-                  }"
-                  #estado="ngModel"
-                  required
-                  [(ngModel)]="FormContenido.estado"
-                >
-                  <option value>--Seleccione estado--</option>
-                    <option value="pitons">True</option>
-                    <option value="pitons">False</option>
-                </select>
-                @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
-                  <label id="validation-estado-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >La selección del estado es obligatoria.</label
-                  >
-                }
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-3">
-            <div class="d-flex justify-content-center gap-3">
-                <button type="button">
-                    <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i class="feather icon-plus ms-2"></i></span>
-                  </button>
-                  <button type="button">
-                      <span  class="btn-NuevoSitio"(click)="regresarSitio()">Regresar<i class="feather icon-arrow-left ms-2"></i></span>
-                  </button>
             </div>
           </div>
         </form>
