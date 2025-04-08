@@ -71,4 +71,31 @@ export class PTLSitiosAPService {
                 })
             );
         }
+
+    modificarSitio(sitio: PTLSitiosAP) {
+        const url = `${base_url}/api/PTLSitiosAP/PutModificarSitio`;
+        return this.http.put<{ ok: boolean, mensaje: string }>(url, sitio, this.headers)
+        .pipe(
+            map(resp => {
+            console.log('respuesta servicio modificar', resp);
+            return {
+                ok: true,
+                resp
+            };
+            })
+        );
+    }
+
+    eliminarSitio(id: number) {
+        const url = `${base_url}/api/PTLSitiosAP/DeleteSitio/${id}`;
+        return this.http.delete<{ ok: boolean, mensaje: string }>(url, this.headers)
+          .pipe(
+            map(resp => {
+              console.log('respuesta servicio eliminar', resp);
+              return resp;
+            })
+          );
+      }
+
+
 }

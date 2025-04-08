@@ -2,14 +2,16 @@
     <hr/>
         <div class="justify-content-end d-flex gap-3">
             <button type="button">
-                <span class="btn-NuevoSitio" (click)="btnInsertarSitios(validationForm)">
-                    Insertar
-                    <i class="feather icon-plus ms-2"></i></span>
+                <span class="btn-NuevoSitio" (click)="btnInsertEditSitios(validationForm)">
+                    {{ modoEdicion ? 'Modificar' : 'Insertar' }}
+                    <i class="feather ms-2" [ngClass]="modoEdicion ? 'icon-edit' : 'icon-plus'"></i>
+                </span>
             </button>
             <button type="button">
                 <span class="btn-NuevoSitio" (click)="btnRegresarSitio()">
                     Regresar
-                    <i class="feather icon-arrow-left ms-2"></i></span>
+                    <i class="feather icon-arrow-left ms-2"></i>
+                </span>
             </button>
         </div>
 </app-card>
@@ -52,12 +54,12 @@
                             <!-- @if (!urlSitio.valid && (urlSitio.dirty || urlSitio.touched || isSubmit)) {
                             <label id="validation-urlSitio-error"
                                 class="error jquery-validation-error small form-text invalid-feedback">Por favor,
-                                ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es
+                                ingrese una URL válida, por ejemplo: www.plataformadym.com. Este campo es
                                 obligatorio.</label>
                             } -->
                             <label *ngIf="!urlSitio.valid && (urlSitio.dirty || urlSitio.touched || isSubmit)"
                             class="error jquery-validation-error small form-text invalid-feedback" >
-                            Por favor, ingrese una URL válida, por ejemplo: https://www.plataformadym.com. Este campo es obligatorio.
+                            Por favor, ingrese una URL. Este campo es obligatorio.
                           </label>
                         </div>
                     </div>

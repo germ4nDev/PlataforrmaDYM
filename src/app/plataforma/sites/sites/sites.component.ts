@@ -5,6 +5,7 @@ import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.mod
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sites',
@@ -82,6 +83,32 @@ dtColumnSearchingOptions: DataTables.Settings = {};
   editarSitio(id: number) {
     this.router.navigate(['/sites/new-site'], { queryParams: { sitioId: id } });
   }
+
+  eliminarSitio(id: number) {
+    Swal.fire({
+      title: '¿Estás seguro de eliminar?',
+      text: '¡estas apunto de eliminar el sitio xxx.!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.sitiosService.eliminarSitio(id).subscribe({
+          next: (resp:any) => {
+            Swal.fire('Eliminado', resp.mensaje, 'success');
+            this.sitiosAP = this.sitiosAP.filter(s => s.sitioId !== id);
+          },
+          error: (err:any) => {
+            Swal.fire('Error', 'No se pudo eliminar el sitio.', 'error');
+            console.error('Error eliminando', err);
+          }
+        });
+      }
+    });
+  }
+
+
 
 
 }

@@ -3,8 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h5>Filtros</h5>
-                <!-- <br> -->
-                <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
+                <!-- <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
                     <tr>
                         <th>
                             <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
@@ -19,17 +18,36 @@
                                 #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
                         </th>
                     </tr>
-                    <!-- <button type="button" class="btn-nuevoS">
-                        <span class="btn-NuevoSitio" (click)="nuevoSitio()">Nuevo Sitio</span>
-                    </button> -->
                 </div>
-                <hr />
+                <hr /> -->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table datatable [dtOptions]="dtColumnSearchingOptions"
                         class="table table-striped row-border table-hover">
                         <thead>
+                            <tr>
+                                <th>
+                                    <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
+                                        #nombreSitio (keyup)="filtrarColumna(0, nombreSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro descripción" name="filtro-nombre" class="form-control"
+                                        #descripcionSitio (keyup)="filtrarColumna(1, descripcionSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro url" name="filtro-url" class="form-control"
+                                        #urlSitio (keyup)="filtrarColumna(2, urlSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro Puerto Sitio" name="filtro-sitio"
+                                        class="form-control" #puertoSitio (keyup)="filtrarColumna(3, puertoSitio.value)" />
+                                </th>
+                                <th>
+                                    <input type="text" placeholder="Filtro Estado" name="filtro-estado" class="form-control"
+                                        #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
+                                </th>
+                            </tr>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
@@ -52,7 +70,8 @@
                                         (click)="editarSitio(sitio.sitioId)">
                                             <i class="feather icon-edit"></i>
                                         </imput>
-                                        <imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet">
+                                        <imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                        (click)="eliminarSitio(sitio.sitioId)">
                                             <i class="feather icon-trash-2"></i>
                                         </imput>
                                     </div>

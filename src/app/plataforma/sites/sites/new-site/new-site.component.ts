@@ -33,6 +33,8 @@ export class NewSiteComponent implements OnInit {
   FormSitio!: FormSitio;
   form: undefined;
   isSubmit: boolean;
+  modoEdicion: boolean = false;
+
 
   // constructor
   constructor(private router: Router,
@@ -47,6 +49,7 @@ export class NewSiteComponent implements OnInit {
       console.log('me llena el Id', id);
 
       if (id) {
+        this.modoEdicion = true;
         this.sitiosService.getSitioById(+id).subscribe({
           next: (resp: any) => {
             this.FormSitio = resp.data;
@@ -57,6 +60,7 @@ export class NewSiteComponent implements OnInit {
         });
       }
       else {
+        this.modoEdicion = false;
         this.FormSitio = {
           sitioId: 0,
           aplicacionId: 0,
@@ -70,27 +74,46 @@ export class NewSiteComponent implements OnInit {
     });
   }
 
-  btnInsertarSitios(form: any) {
+  btnInsertEditSitios(form: any) {
     this.isSubmit = true;
 
     if (!form.valid) {
       return;
     }
 
-    this.sitiosService.insertarSitio(this.FormSitio).subscribe({
-      next: (resp:any) => {
-        if (resp.ok) {
-          Swal.fire('', 'El sitio se insertó correctamente', 'success');
-          form.resetForm();
-          this.isSubmit = false;
-          this.router.navigate(['/sites/sites']);
-        }
-      },
-      error: (err:any) => {
-        console.error(err);
-        Swal.fire('Error', 'No se pudo insertar el sitio', 'error');
+    if (this.modoEdicion) {
+        this.sitiosService.modificarSitio(this.FormSitio).subscribe({
+          next: (resp: any) => {
+            if (resp.ok) {
+              Swal.fire('', 'El sitio se modificó correctamente', 'success');
+              this.router.navigate(['/sites/sites']);
+            } else {
+              Swal.fire('Error', resp.message || 'No se pudo actualizar el sitio', 'error');
+            }
+          },
+          error: (err: any) => {
+            console.error(err);
+            Swal.fire('Error', 'No se pudo actualizar el sitio', 'error');
+          }
+        });
       }
-    });
+      else
+      {
+        this.sitiosService.insertarSitio(this.FormSitio).subscribe({
+            next: (resp:any) => {
+              if (resp.ok) {
+                Swal.fire('', 'El sitio se insertó correctamente', 'success');
+                form.resetForm();
+                this.isSubmit = false;
+                this.router.navigate(['/sites/sites']);
+              }
+            },
+            error: (err:any) => {
+              console.error(err);
+              Swal.fire('Error', 'No se pudo insertar el sitio', 'error');
+            }
+          });
+      }
   }
 
   btnRegresarSitio() {
