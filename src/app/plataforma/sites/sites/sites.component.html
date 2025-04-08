@@ -2,7 +2,7 @@
 	<div class="col-sm-12">
         <div class="card">
 			<div class="card-header">
-				<h5>Filtros</h5>
+				<h5>Sitios</h5>
                 <hr>
                 <div class="row col-sm-12">
                     <div class="col-sm-6">
@@ -20,31 +20,10 @@
             </div>
         </div>
 		<div class="card">
-			<div class="card-header">
-				<!-- <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-                    <tr>
-                        <th>
-                            <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
-                                #nombreSitio (keyup)="filtrarColumna(0, nombreSitio.value)" />
-                        </th>
-                        <th>
-                            <input type="text" placeholder="Filtro Puerto Sitio" name="filtro-sitio"
-                                class="form-control" #puertoSitio (keyup)="filtrarColumna(3, puertoSitio.value)" />
-                        </th>
-                        <th>
-                            <input type="text" placeholder="Filtro Estado" name="filtro-estado" class="form-control"
-                                #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
-                        </th>
-                    </tr>
-                </div>
-                <hr /> -->
-			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table [dtOptions]="dtColumnSearchingOptions"
-						datatable
-						class="table table-striped row-border table-hover">
-						<thead>
+					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table table-striped row-border table-hover">
+						<thead class="scroll">
 							<tr>
 								<th>
 									<input #nombreSitio
@@ -86,6 +65,8 @@
 										name="filtro-estado"
 										class="form-control">
 								</th>
+                                <th>
+                                </th>
 							</tr>
 							<tr>
 								<th>Nombre</th>
@@ -132,7 +113,6 @@
 					</table>
 				</div>
 			</div>
-			<hr>
 		</div>
 	</div>
 </div>
