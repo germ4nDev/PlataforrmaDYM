@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-12">
-        <div class="card">
+        <div class="card card-header-sticky">
 			<div class="card-header">
 				<h5>Sitios</h5>
                 <hr>
@@ -9,11 +9,8 @@
                         <app-breadcrumb></app-breadcrumb>
                     </div>
                     <div class="col-sm-6 justify-content-end d-flex">
-                        <button type="button">
-                            <span (click)="nuevoSitio()"
-                                class="btn-NuevoSitio">
-                                Nuevo Sitio
-                            </span>
+                        <button type="button" (click)="nuevoSitio()" class="btn-NuevoSitio">
+                            Nuevo Sitio
                         </button>
                     </div>
                 </div>
@@ -23,7 +20,7 @@
 			<div class="card-body">
 				<div class="table-responsive">
 					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table table-striped row-border table-hover">
-						<thead class="scroll">
+						<thead>
 							<tr>
 								<th>
 									<input #nombreSitio
@@ -96,14 +93,12 @@
 								</td>
 								<td style="text-align: center; width: 10%;">
 									<div class="d-flex flex-wrap gap-2">
-										<imput (click)="editarSitio(sitio.sitioId)"
-											type="button"
-											class="btn btn-icon btn-outline-primary d-inline-flex btnEdit">
+										<imput type="button" class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarSitio(sitio.sitioId)">
 											<i class="feather icon-edit"></i>
 										</imput>
-										<imput (click)="eliminarSitio(sitio.sitioId)"
-											type="button"
-											class="btn btn-icon btn-outline-danger d-inline-flex btnDelet">
+										<imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarSitio(sitio.sitioId, sitio.nombreSitio)">
 											<i class="feather icon-trash-2"></i>
 										</imput>
 									</div>

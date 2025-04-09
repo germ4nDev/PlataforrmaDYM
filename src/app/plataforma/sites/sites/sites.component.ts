@@ -87,10 +87,10 @@ dtColumnSearchingOptions: DataTables.Settings = {};
     this.router.navigate(['/sites/new-site'], { queryParams: { sitioId: id } });
   }
 
-  eliminarSitio(id: number) {
+  eliminarSitio(id: number, nombre: string) {
     Swal.fire({
       title: '¿Estás seguro de eliminar?',
-      text: '¡estas apunto de eliminar el sitio xxx.!',
+      text: `¡estas apunto de eliminar el sitio "${nombre}".!`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -110,8 +110,4 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       }
     });
   }
-
-
-
-
 }
