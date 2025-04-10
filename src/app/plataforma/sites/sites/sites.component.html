@@ -21,15 +21,28 @@
 				<div class="table-responsive">
 					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table table-striped row-border table-hover">
 						<thead>
+
+                            <tr>
+
+								<th>Descripción</th>
+								<th>Descripción</th>
+								<th>URL</th>
+								<th>Puerto Sitio</th>
+								<th>Estado</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+                        <tfoot>
+                            <!-- <hr> -->
 							<tr>
 								<th>
-									<input #nombreSitio
-										(keyup)="filtrarColumna(0, nombreSitio.value)"
-										type="text"
-										placeholder="Filtro Nombre"
-										name="filtro-nombre"
-										class="form-control">
-								</th>
+                                    <input #nombreSitio
+                                        (keyup)="filtrarColumna(0, nombreSitio.value)"
+                                        type="text"
+                                        placeholder="Filtro Nombre"
+                                        name="filtro-nombre"
+                                        class="form-control">
+                                </th>
 								<th>
 									<input #descripcionSitio
 										(keyup)="filtrarColumna(1, descripcionSitio.value)"
@@ -65,15 +78,7 @@
                                 <th>
                                 </th>
 							</tr>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripción</th>
-								<th>URL</th>
-								<th>Puerto Sitio</th>
-								<th>Estado</th>
-								<th>Opciones</th>
-							</tr>
-						</thead>
+                        </tfoot>
 						<tbody>
 							<tr *ngFor="let sitio of sitiosAP">
 								<td>
@@ -105,6 +110,7 @@
 								</td>
 							</tr>
 						</tbody>
+
 					</table>
 				</div>
 			</div>

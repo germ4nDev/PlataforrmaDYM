@@ -4,19 +4,20 @@
             <div class="card-header">
                 <h5>Administración de Sitios</h5>
                 <hr>
-                <div class="justify-content-end d-flex gap-3">
-                    <button type="button">
-                        <span class="btn-NuevoSitio" (click)="btnInsertEditSitios(validationForm)">
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex gap-3">
+                        <button type="button" class="btn-NuevoSitio" (click)="btnInsertEditSitios(validationForm)">
                             {{ modoEdicion ? 'Modificar' : 'Insertar' }}
                             <i class="feather ms-2" [ngClass]="modoEdicion ? 'icon-edit' : 'icon-plus'"></i>
-                        </span>
-                    </button>
-                    <button type="button">
-                        <span class="btn-NuevoSitio" (click)="btnRegresarSitio()">
+                        </button>
+                        <button type="button" class="btn-NuevoSitio" (click)="btnRegresarSitio()">
                             Regresar
                             <i class="feather icon-arrow-left ms-2"></i>
-                        </span>
-                    </button>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,17 +68,21 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-label">Estado</label>
-                            <div class="radio-input">
-                                <div class="radio-item">
-                                    <input name="estadoSitio" type="radio" class="input" id="radio-true" [value]="true"
+                            <div class="radio-buttons">
+                                <label class="radio-button">
+                                    <input name="option" type="radio"
+                                        [value]="true"
                                         [(ngModel)]="FormSitio.estadoSitio">
-                                    <label for="radio-true">Activo</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input name="estadoSitio" type="radio" class="input" id="radio-false"
-                                        [value]="false" [(ngModel)]="FormSitio.estadoSitio">
-                                    <label for="radio-false">Inactivo</label>
-                                </div>
+                                        <div class="radio-circle"></div>
+                                    <label class="radio-label">Activo</label>
+                                </label>
+                                <label class="radio-button">
+                                    <input name="option" type="radio"
+                                        [value]="false"
+                                        [(ngModel)]="FormSitio.estadoSitio">
+                                        <div class="radio-circle"></div>
+                                    <label class="radio-label">Inactivo</label>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -86,77 +91,7 @@
                             <label class="form-label">Descripción</label>
                             <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
                                 [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
-                                    </textarea>
-                            <label
-                                *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                Por favor, ingrese una descripción. Este campo es obligatorio.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
-                                [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
-                                    </textarea>
-                            <label
-                                *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                Por favor, ingrese una descripción. Este campo es obligatorio.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
-                                [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
-                                    </textarea>
-                            <label
-                                *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                Por favor, ingrese una descripción. Este campo es obligatorio.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
-                                [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
-                                    </textarea>
-                            <label
-                                *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                Por favor, ingrese una descripción. Este campo es obligatorio.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
-                                [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
-                                    </textarea>
-                            <label
-                                *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
-                                class="error jquery-validation-error small form-text invalid-feedback">
-                                Por favor, ingrese una descripción. Este campo es obligatorio.
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Descripcion del sitio" name="descripcionSitio"
-                                [ngClass]="{'is-invalid': !descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)}"
-                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio">
+                                #descripcionSitio="ngModel" required [(ngModel)]="FormSitio.descripcionSitio" rows="5">
                                     </textarea>
                             <label
                                 *ngIf="!descripcionSitio.valid && (descripcionSitio.dirty || descripcionSitio.touched || isSubmit)"
