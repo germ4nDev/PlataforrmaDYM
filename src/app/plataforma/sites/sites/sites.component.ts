@@ -8,12 +8,13 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 
 // project import
+import { BreadcrumbComponent } from '../../../theme/shared/components/breadcrumb/breadcrumb.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 @Component({
   selector: 'app-sites',
   standalone: true,
-  imports: [CommonModule, DataTablesModule, SharedModule],
+  imports: [CommonModule, DataTablesModule, SharedModule, BreadcrumbComponent],
   templateUrl: './sites.component.html',
   styleUrl: './sites.component.scss'
 })
@@ -26,7 +27,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   sitiosAP: PTLSitiosAP[]=[];
 
-  constructor(private router: Router, private sitiosService:PTLSitiosAPService) {}
+  constructor(private router: Router, private sitiosService:PTLSitiosAPService, private BreadCrumb : BreadcrumbComponent) {}
 
   ngOnInit() {
     this.dtColumnSearchingOptions = {
@@ -52,6 +53,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
     }
 
   ngAfterViewInit(): void {
+    this.BreadCrumb.setBreadcrumb();
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.columns().every(function () {
         const that = this;
@@ -87,10 +89,10 @@ dtColumnSearchingOptions: DataTables.Settings = {};
     this.router.navigate(['/sites/new-site'], { queryParams: { sitioId: id } });
   }
 
-  eliminarSitio(id: number) {
+  eliminarSitio(id: number, nombre: string) {
     Swal.fire({
       title: '¿Estás seguro de eliminar?',
-      text: '¡estas apunto de eliminar el sitio xxx.!',
+      text: `¡estas apunto de eliminar el sitio "${nombre}".!`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -110,8 +112,4 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       }
     });
   }
-
-
-
-
 }

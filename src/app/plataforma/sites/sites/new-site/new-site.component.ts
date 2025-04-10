@@ -10,6 +10,7 @@ import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
+import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 
 export class FormSitio {
   sitioId!: number;
@@ -39,11 +40,12 @@ export class NewSiteComponent implements OnInit {
   // constructor
   constructor(private router: Router,
      private sitiosService:PTLSitiosAPService,
-     private route: ActivatedRoute,) {
+     private route: ActivatedRoute, private BreadCrumb : BreadcrumbComponent) {
     this.isSubmit = false;
   }
 
   ngOnInit() {
+    this.BreadCrumb.setBreadcrumb();
     this.route.queryParams.subscribe(params => {
       const id = params['sitioId'];
       console.log('me llena el Id', id);
