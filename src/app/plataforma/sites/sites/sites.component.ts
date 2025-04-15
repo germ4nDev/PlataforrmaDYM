@@ -27,9 +27,12 @@ dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   sitiosAP: PTLSitiosAP[]=[];
 
-  constructor(private router: Router, private sitiosService:PTLSitiosAPService, private BreadCrumb : BreadcrumbComponent) {}
+  constructor(private router: Router,
+     private sitiosService:PTLSitiosAPService,
+      private BreadCrumb : BreadcrumbComponent) {}
 
   ngOnInit() {
+
     this.dtColumnSearchingOptions = {
         responsive: true,
         columns: [

@@ -36,7 +36,6 @@ export class NewSiteComponent implements OnInit {
   isSubmit: boolean;
   modoEdicion: boolean = false;
 
-
   // constructor
   constructor(private router: Router,
      private sitiosService:PTLSitiosAPService,
