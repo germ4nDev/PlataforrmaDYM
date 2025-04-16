@@ -1,59 +1,76 @@
 <div class="row">
 	<div class="col-sm-12">
-        <div class="card">
+        <div class="card card-header-sticky">
 			<div class="card-header">
-				<h5>Filtros</h5>
+				<h4>Sitios</h4>
                 <hr>
                 <div class="row col-sm-12">
                     <div class="col-sm-6">
                         <app-breadcrumb></app-breadcrumb>
                     </div>
                     <div class="col-sm-6 justify-content-end d-flex">
-                        <button type="button">
-                            <span (click)="nuevoSitio()"
-                                class="btn-NuevoSitio">
-                                Nuevo Sitio
-                            </span>
+                        <button type="button" (click)="nuevoSitio()" class="btn-NuevoSitio">
+                            Nuevo Sitio
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 		<div class="card">
-			<div class="card-header">
-				<!-- <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-                    <tr>
-                        <th>
-                            <input type="text" placeholder="Filtro Nombre" name="filtro-nombre" class="form-control"
-                                #nombreSitio (keyup)="filtrarColumna(0, nombreSitio.value)" />
-                        </th>
-                        <th>
-                            <input type="text" placeholder="Filtro Puerto Sitio" name="filtro-sitio"
-                                class="form-control" #puertoSitio (keyup)="filtrarColumna(3, puertoSitio.value)" />
-                        </th>
-                        <th>
-                            <input type="text" placeholder="Filtro Estado" name="filtro-estado" class="form-control"
-                                #estadoSitio (keyup)="filtrarColumna(4, estadoSitio.value)" />
-                        </th>
-                    </tr>
-                </div>
-                <hr /> -->
-			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table [dtOptions]="dtColumnSearchingOptions"
-						datatable
-						class="table table-striped row-border table-hover">
+					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table row-border">
 						<thead>
+                            <tr>
+								<th>Descripción</th>
+								<th>Descripción</th>
+								<th>URL</th>
+								<th>Puerto Sitio</th>
+								<th>Estado</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let sitio of sitiosAP">
+								<td>
+									{{ sitio.nombreSitio }}
+								</td>
+								<td>
+									{{ sitio.descripcionSitio }}
+								</td>
+								<td>
+									{{ sitio.urlSitio }}
+								</td>
+								<td>
+									{{ sitio.puertoSitio }}
+								</td>
+								<td>
+									{{ getEstado(sitio.estadoSitio)}}
+								</td>
+								<td style="text-align: center; width: 10%;">
+									<div class="d-flex flex-wrap gap-2">
+										<imput type="button" class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarSitio(sitio.sitioId)" title="Modificar sitio">
+											<i class="feather icon-edit"></i>
+										</imput>
+										<imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarSitio(sitio.sitioId, sitio.nombreSitio)" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Sitio">
+											<i class="feather icon-trash-2"></i>
+										</imput>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+                        <tfoot>
 							<tr>
 								<th>
-									<input #nombreSitio
-										(keyup)="filtrarColumna(0, nombreSitio.value)"
-										type="text"
-										placeholder="Filtro Nombre"
-										name="filtro-nombre"
-										class="form-control">
-								</th>
+                                    <input #nombreSitio
+                                        (keyup)="filtrarColumna(0, nombreSitio.value)"
+                                        type="text"
+                                        placeholder="Filtro Nombre"
+                                        name="filtro-nombre"
+                                        class="form-control">
+                                </th>
 								<th>
 									<input #descripcionSitio
 										(keyup)="filtrarColumna(1, descripcionSitio.value)"
@@ -86,53 +103,13 @@
 										name="filtro-estado"
 										class="form-control">
 								</th>
+                                <th>
+                                </th>
 							</tr>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripción</th>
-								<th>URL</th>
-								<th>Puerto Sitio</th>
-								<th>Estado</th>
-								<th>Opciones</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor="let sitio of sitiosAP">
-								<td>
-									{{ sitio.nombreSitio }}
-								</td>
-								<td>
-									{{ sitio.descripcionSitio }}
-								</td>
-								<td>
-									{{ sitio.urlSitio }}
-								</td>
-								<td>
-									{{ sitio.puertoSitio }}
-								</td>
-								<td>
-									{{ getEstado(sitio.estadoSitio)}}
-								</td>
-								<td style="text-align: center; width: 10%;">
-									<div class="d-flex flex-wrap gap-2">
-										<imput (click)="editarSitio(sitio.sitioId)"
-											type="button"
-											class="btn btn-icon btn-outline-primary d-inline-flex btnEdit">
-											<i class="feather icon-edit"></i>
-										</imput>
-										<imput (click)="eliminarSitio(sitio.sitioId)"
-											type="button"
-											class="btn btn-icon btn-outline-danger d-inline-flex btnDelet">
-											<i class="feather icon-trash-2"></i>
-										</imput>
-									</div>
-								</td>
-							</tr>
-						</tbody>
+                        </tfoot>
 					</table>
 				</div>
 			</div>
-			<hr>
 		</div>
 	</div>
 </div>

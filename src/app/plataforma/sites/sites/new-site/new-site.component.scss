@@ -1,111 +1,98 @@
-button {
-    align-items: center;
-    background-image: linear-gradient(144deg, #034ba6, #034ba6 50%, #034ba6);
-    border: 0;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #3b4650;
-    display: flex;
-    font-size: 14px;
-    justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 100px;
-    padding: 2px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  button:active,
-  button:hover {
-    outline: 0;
-  }
-
-  button span {
+.btn-NuevoSitio {
     background-color: #c9d0d5;
-    padding: 10px 16px;
-    border-radius: 6px;
-    width: 100%;
-    height: 100%;
-    transition: 300ms;
-  }
+    color: #3b4650;
+    width: 8.5em;
+    height: 2.9em;
+    border: #034ba6 0.2em solid;
+    border-radius: 11px;
+    transition: all 0.6s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
 
-  button:hover span {
-    background: none;
+.btn-NuevoSitio:hover {
+    background-color: #034ba6;
     color: #c9d0d5;
-  }
+    cursor: pointer;
+}
 
-  button:active {
-    transform: scale(0.9);
-  }
+.btn-NuevoSitio:active {
+    transform: scale(0.95);
+}
 
-  .sticky-card {
+.btn-NuevoSitio i {
+    transition: all 0.6s ease;
+}
+
+.btn-NuevoSitio:hover i {
+    transform: translateX(-5px);
+}
+.card-header-sticky {
     position: sticky;
-    top: 0;
-    background: transparent;
-    z-index: 10;
-    padding: 36px;
+    top: 57px;
+    background: white;;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Chekbox */
-.input {
-    -webkit-appearance: none;
-    display: block;
-    margin: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
-    cursor: pointer;
-    vertical-align: middle;
-    box-shadow: hsla(0,0%,100%,.15) 0 1px 1px, inset hsla(0,0%,0%,.5) 0 0 0 1px;
-    background-color: hsla(0,0%,0%,.2);
-    background-image: -webkit-radial-gradient( hsla(200,100%,90%,1) 0%, hsla(200,100%,70%,1) 15%, hsla(200,100%,60%,.3) 28%, hsla(200,100%,30%,0) 70% );
-    background-repeat: no-repeat;
-    -webkit-transition: background-position .15s cubic-bezier(.8, 0, 1, 1),
-      -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
-    outline: none;
-  }
-
-  .input:checked {
-    -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1),
-      -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
-  }
-
-  .input:active {
-    -webkit-transform: scale(1.5);
-    -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
-  }
-
-
-
-  .input,
-  .input:active {
-    background-position: 0 24px;
-  }
-
-  .input:checked {
-    background-position: 0 0;
-  }
-
-  .input:checked ~ .input,
-  .input:checked ~ .input:active {
-    background-position: 0 -24px;
-  }
-
-  .radio-input {
+.radio-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
+  }
 
-.radio-item {
+  .radio-button {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
 
+  .radio-button input[type="radio"] {
+    display: none;
+  }
+
+  .radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #aaa;
+    position: relative;
+    margin-right: 10px;
+  }
+
+  .radio-circle::before {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .radio-button input[type="radio"]:checked + .radio-circle::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .radio-button:nth-of-type(1) input[type="radio"]:checked + .radio-circle::before {
+    background-color: #034ba6;
+  }
+
+  .radio-button:nth-of-type(2) input[type="radio"]:checked + .radio-circle::before {
+    background-color: #034ba6;
+  }
+
+  .radio-button:hover .radio-circle {
+    border-color: #555;
+  }
+
+  .radio-button:hover input[type="radio"]:checked + .radio-circle::before {
+    background-color: #555;
+  }
