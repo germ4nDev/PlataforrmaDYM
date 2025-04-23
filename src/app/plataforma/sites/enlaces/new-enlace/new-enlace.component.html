@@ -1,118 +1,96 @@
-<app-card cardTitle="Administración de Enlaces" class="sticky-card">
-    <div class="justify-content-end d-flex gap-3">
-        <button type="button">
-            <span class="btn-NuevoSitio" (click)="save(validationForm)">Insertar<i
-                    class="feather icon-plus ms-2"></i></span>
-        </button>
-        <button type="button">
-            <span class="btn-NuevoSitio" (click)="regresarEnlace()">Regresar<i
-                    class="feather icon-arrow-left ms-2"></i></span>
-        </button>
-    </div>
-</app-card>
 <div class="row">
     <div class="col-sm-12">
-      <app-card cardTitle="Formulario de Enlaces">
-        <div class="card-header">
-            <h3>Nuevo Enlace</h3>
+        <div class="card card-header-sticky">
+            <div class="card-header">
+                <h5>Administración de Enlaces</h5>
+                <hr>
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex gap-3">
+                        <button type="button" class="btn-NuevoEnlace" (click)="btnInsertEditEnlace(validationForm)">
+                            {{ modoEdicion ? 'Modificar' : 'Insertar' }}
+                            <i class="feather ms-2" [ngClass]="modoEdicion ? 'icon-edit' : 'icon-plus'"></i>
+                        </button>
+                        <button type="button" class="btn-NuevoEnlace" (click)="btnRegresarEnlace()">
+                            Regresar
+                            <i class="feather icon-arrow-left ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form #validationForm="ngForm" class="editForm" novalidate>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="nombre">Nombre</label>
-                <input
-                  class="form-control input-md"
-                  id="nombre"
-                  name="nombre"
-                  type="text"
-                  placeholder="nombre del enlace"
-                  [ngClass]="{
-                    'is-invalid': !nombre.valid && (nombre.dirty || nombre.touched || isSubmit)
-                  }"
-                  #nombre="ngModel"
-                  required
-                  nombre
-                  [(ngModel)]="FormEnlace.nombre"
-                />
-                @if (!nombre.valid && (nombre.dirty || nombre.touched || isSubmit)) {
-                  <label id="validation-nombre-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >Por favor, ingrese un nombre. Este campo es obligatorio.</label
-                  >
-                }
-              </div>
+        <div class="card">
+            <div class="card-header">
+                <h4>Nuevo Enlace</h4>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">Ruta</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="validation-ruta"
-                    placeholder="ruta del enlace"
-                    [ngClass]="{
-                      'is-invalid': !ruta.valid && (ruta.dirty || ruta.touched || isSubmit)
-                    }"
-                    #ruta="ngModel"
-                    required
-                    ruta
-                    [(ngModel)]="FormEnlace.ruta"
-                  />
-                  @if (!ruta.valid && (ruta.dirty || ruta.touched || isSubmit)) {
-                    <label id="validation-ruta-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una ruta válida, por ejemplo: https://www.plataformadym.com. Este campo es obligatorio.</label
-                    >
-                  }
-                </div>
-              </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-label">Estado</label>
-                <select
-                  class="form-control"
-                  title="select"
-                  name="validation-estado"
-                  [ngClass]="{
-                    'is-invalid': !estado.valid && (estado.dirty || estado.touched || isSubmit)
-                  }"
-                  #estado="ngModel"
-                  required
-                  [(ngModel)]="FormEnlace.estado"
-                >
-                  <option value>--Seleccione estado--</option>
-                    <option value="pitons">True</option>
-                    <option value="pitons">False</option>
-                </select>
-                @if (!estado.valid && (estado.dirty || estado.touched || isSubmit)) {
-                  <label id="validation-estado-error" class="error jquery-validation-error small form-text invalid-feedback"
-                    >La selección del estado es obligatoria.</label
-                  >
-                }
-              </div>
+            <div class="card-body">
+                <form #validationForm="ngForm" class="editForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-control-label" for="nombreEnlace">nombre</label>
+                                <input class="form-control input-md" id="nombreEnlace" name="nombreEnlace" type="text"
+                                    placeholder="nombre del enlace"
+                                    [ngClass]="{'is-invalid': !nombreEnlace.valid && (nombreEnlace.dirty || nombreEnlace.touched || isSubmit)}"
+                                    #nombreEnlace="ngModel" required [(ngModel)]="FormEnlace.nombreEnlace" />
+                                <label *ngIf="!nombreEnlace.valid && (nombreEnlace.dirty || nombreEnlace.touched || isSubmit)"
+                                    class="error jquery-validation-error small form-text invalid-feedback">
+                                    Por favor, Ingrese un nombre. Este campo es obligatorio.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Ruta</label>
+                                <input type="text" class="form-control" name="rutaEnlace" placeholder="Ruta del enlace"
+                                    [ngClass]="{'is-invalid': !rutaEnlace.valid && (rutaEnlace.dirty || rutaEnlace.touched || isSubmit) }"
+                                    #rutaEnlace="ngModel" required [(ngModel)]="FormEnlace.rutaEnlace" />
+                                <label *ngIf="!rutaEnlace.valid && (rutaEnlace.dirty || rutaEnlace.touched || isSubmit)"
+                                    class="error jquery-validation-error small form-text invalid-feedback">
+                                    Por favor, ingrese una Ruta. Este campo es obligatorio.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Estado</label>
+                                <div class="radio-buttons">
+                                    <label class="radio-button">
+                                        <input name="option" type="radio"
+                                            [value]="true"
+                                            [(ngModel)]="FormEnlace.estadoEnlace">
+                                            <div class="radio-circle"></div>
+                                        <label class="radio-label">Activo</label>
+                                    </label>
+                                    <label class="radio-button">
+                                        <input name="option" type="radio"
+                                            [value]="false"
+                                            [(ngModel)]="FormEnlace.estadoEnlace">
+                                            <div class="radio-circle"></div>
+                                        <label class="radio-label">Inactivo</label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Descripción</label>
+                                <textarea class="form-control" placeholder="Descripcion del enlace" name="descripcionEnlace"
+                                    [ngClass]="{'is-invalid': !descripcionEnlace.valid && (descripcionEnlace.dirty || descripcionEnlace.touched || isSubmit)}"
+                                    #descripcionEnlace="ngModel" required [(ngModel)]="FormEnlace.descripcionEnlace" rows="5">
+                                </textarea>
+                                <label
+                                    *ngIf="!descripcionEnlace.valid && (descripcionEnlace.dirty || descripcionEnlace.touched || isSubmit)"
+                                    class="error jquery-validation-error small form-text invalid-feedback">
+                                    Por favor, ingrese una descripción. Este campo es obligatorio.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                  <label class="form-label">Descripción</label>
-                  <textarea
-                    class="form-control"
-                    placeholder="Descripcion del enlace"
-                    name="validation-descripcion"
-                    [ngClass]="{
-                      'is-invalid': !descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)
-                    }"
-                    #descripcion="ngModel"
-                    required
-                    [(ngModel)]="FormEnlace.descripcion"
-                  ></textarea>
-                  @if (!descripcion.valid && (descripcion.dirty || descripcion.touched || isSubmit)) {
-                    <label id="validation-descripcion-error" class="error jquery-validation-error small form-text invalid-feedback"
-                      >Por favor, ingrese una descripción. Este campo es obligatorio.</label
-                    >
-                  }
-                </div>
-            </div>
-          </div>
-        </form>
-      </app-card>
+        </div>
     </div>
-  </div>
+</div>

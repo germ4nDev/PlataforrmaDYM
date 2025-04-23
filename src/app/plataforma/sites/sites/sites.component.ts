@@ -19,7 +19,7 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   styleUrl: './sites.component.scss'
 })
 export class SitesComponent implements OnInit, AfterViewInit {
-    // [x: string]: any;
+    [x: string]: any;
     @ViewChild(DataTableDirective, { static: false })
     datatableElement!: DataTableDirective;
 
