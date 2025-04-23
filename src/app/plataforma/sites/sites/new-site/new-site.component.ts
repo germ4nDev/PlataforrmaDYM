@@ -1,11 +1,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-
-// third party
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -39,9 +35,11 @@ export class NewSiteComponent implements OnInit {
   // constructor
   constructor(private router: Router,
      private sitiosService:PTLSitiosAPService,
-     private route: ActivatedRoute, private BreadCrumb : BreadcrumbComponent) {
-    this.isSubmit = false;
-  }
+     private route: ActivatedRoute,
+     private BreadCrumb : BreadcrumbComponent)
+     {
+        this.isSubmit = false;
+     }
 
   ngOnInit() {
     this.BreadCrumb.setBreadcrumb();
