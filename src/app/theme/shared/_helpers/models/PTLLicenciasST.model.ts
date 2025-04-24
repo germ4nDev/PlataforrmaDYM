@@ -1,4 +1,4 @@
-export class PTLLcenciaST {
+export class PTLLicenciasST {
     constructor (
         public licenciaId : number,
         public suscriptorId : number,

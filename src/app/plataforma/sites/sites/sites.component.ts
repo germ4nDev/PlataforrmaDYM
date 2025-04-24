@@ -6,8 +6,6 @@ import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.se
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-
-// project import
 import { BreadcrumbComponent } from '../../../theme/shared/components/breadcrumb/breadcrumb.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
@@ -28,8 +26,8 @@ dtColumnSearchingOptions: DataTables.Settings = {};
   sitiosAP: PTLSitiosAP[]=[];
 
   constructor(private router: Router,
-     private sitiosService:PTLSitiosAPService,
-      private BreadCrumb : BreadcrumbComponent) {}
+    private sitiosService:PTLSitiosAPService,
+    private BreadCrumb : BreadcrumbComponent) {}
 
   ngOnInit() {
 

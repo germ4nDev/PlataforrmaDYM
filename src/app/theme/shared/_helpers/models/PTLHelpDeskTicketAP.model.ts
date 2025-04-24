@@ -1,4 +1,4 @@
-export class PTLHelpDeskTicketAP {
+export class PTLHelpDeskTicketsAP {
     constructor (
         public ticketId : number,
         public aplicacionId : number,

@@ -17,7 +17,11 @@ const routes: Routes = [
         {
             path: 'gestion-password',
             loadComponent: () => import('./usuarios/gestion-password/gestion-password.component').then(m => m.GestionPasswordComponent)
-        }
+        },
+        {
+            path: 'new-usuario',
+            loadComponent: () => import('./usuarios/new-usuario/new-usuario.component').then(m => m.NewUsuarioComponent)
+        },
     ]
   }
 ];

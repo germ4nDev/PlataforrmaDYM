@@ -1,10 +1,11 @@
-export class PTLsuarioST {
+export class PTLUsuarios {
     constructor (
         public usuarioId : number,
-        public suscriptorId : number,
+        public fotoUsuario : string,
         public nombreUsuario : string,
-        public claveUsuario : string,
+        public descripcionUsuario : string,
         public correoUsuario : string,
+        public claveUsuario : string,
         public estadoUsuario : boolean
    ) {}
 }

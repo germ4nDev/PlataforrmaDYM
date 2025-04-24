@@ -1,4 +1,4 @@
-export class PTLConexionBD {
+export class PTLConexionesBD {
     constructor (
         public conexionId : number,
         public aplicacionId : number,

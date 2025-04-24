@@ -26,13 +26,11 @@ export class FormSitio {
     styleUrl: './new-site.component.scss'
   })
 export class NewSiteComponent implements OnInit {
-  // private props
   FormSitio!: FormSitio;
   form: undefined;
   isSubmit: boolean;
   modoEdicion: boolean = false;
 
-  // constructor
   constructor(private router: Router,
      private sitiosService:PTLSitiosAPService,
      private route: ActivatedRoute,
