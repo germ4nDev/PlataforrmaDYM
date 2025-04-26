@@ -6,7 +6,7 @@
                 <hr>
                 <div class="row col-sm-12">
                     <div class="col-sm-6">
-                        <!-- <app-breadcrumb></app-breadcrumb> -->
+                        <app-breadcrumb></app-breadcrumb>
                     </div>
                     <div class="col-sm-6 justify-content-end d-flex gap-3">
                         <button type="button" class="btn-NuevoUsuario" (click)="btnInsertEditUsuario(validationForm)">
@@ -31,14 +31,6 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="fotoUsuario">foto</label>
-                                <!-- <input class="form-control input-md" id="fotoUsuario" name="fotoUsuario" type="text"
-                                    placeholder="Foto del usuario"
-                                    [ngClass]="{'is-invalid': !fotoUsuario.valid && (fotoUsuario.dirty || fotoUsuario.touched || isSubmit)}"
-                                    #fotoUsuario="ngModel" required [(ngModel)]="FormUsuario.fotoUsuario" />
-                                    <label *ngIf="!fotoUsuario.valid && (fotoUsuario.dirty || fotoUsuario.touched || isSubmit)"
-                                    class="error jquery-validation-error small form-text invalid-feedback">
-                                    Por favor, Ingrese un imagen. Este campo es obligatorio.
-                                </label> -->
                                 <input type="file" class="form-control input-md" id="fotoUsuario" name="fotoUsuario"
                                 (change)="onFileSelected($event)" accept="image/*"
                                 [ngClass]="{'is-invalid': !selectedFile && (isSubmit || fotoUsuario.touched)}"

@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   standalone: true,
   imports: [CommonModule, DataTablesModule, SharedModule, BreadcrumbComponent],
   templateUrl: './contenidos.component.html',
-  styleUrls: ['./contenidos.component.css']
+  styleUrls: ['./contenidos.component.scss']
 })
 export class ContenidosComponent implements OnInit, AfterViewInit {
     [x: string]: any;

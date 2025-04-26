@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.model';
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 import { Subject } from 'rxjs';
@@ -17,41 +17,42 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   styleUrl: './sites.component.scss'
 })
 export class SitesComponent implements OnInit, AfterViewInit {
-    [x: string]: any;
-    @ViewChild(DataTableDirective, { static: false })
-    datatableElement!: DataTableDirective;
+  [x: string]: any;
+  @ViewChild(DataTableDirective, { static: false })
+  datatableElement!: DataTableDirective;
 
-dtColumnSearchingOptions: DataTables.Settings = {};
+  dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  sitiosAP: PTLSitiosAP[]=[];
+  sitiosAP: PTLSitiosAP[] = [];
 
-  constructor(private router: Router,
-    private sitiosService:PTLSitiosAPService,
-    private BreadCrumb : BreadcrumbComponent) {}
+  constructor(
+    private router: Router,
+    private sitiosService: PTLSitiosAPService,
+    private BreadCrumb: BreadcrumbComponent
+  ) {}
 
   ngOnInit() {
-
     this.dtColumnSearchingOptions = {
-        responsive: true,
-        columns: [
-          { title: 'Nombre', data: 'nombreSitio' },
-          { title: 'Descripción', data: 'descripcionSitio' },
-          { title: 'URL', data: 'urlSitio' },
-          { title: 'Puerto Sitio', data: 'puertoSitio' },
-          { title: 'Estado', data: 'estadoSitio' },
-          { title: 'Opciones', data: 'opciones' },
-        ]
-      };
+      responsive: true,
+      columns: [
+        { title: 'Nombre', data: 'nombreSitio' },
+        { title: 'Descripción', data: 'descripcionSitio' },
+        { title: 'URL', data: 'urlSitio' },
+        { title: 'Puerto Sitio', data: 'puertoSitio' },
+        { title: 'Estado', data: 'estadoSitio' },
+        { title: 'Opciones', data: 'opciones' }
+      ]
+    };
 
-      this.consultarSitios();
+    this.consultarSitios();
   }
-  consultarSitios () {
-    this.sitiosService.getSitios().subscribe((sitios:any) => {
-        console.log('Todos los sitios', sitios.resp.data);
-        this.sitiosAP = sitios.resp.data;
-        this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
+  consultarSitios() {
+    this.sitiosService.getSitios().subscribe((sitios: any) => {
+      console.log('Todos los sitios', sitios.resp.data);
+      this.sitiosAP = sitios.resp.data;
+      this.dtTrigger.next(null); // <--- Dispara la actualización de la tabla
     });
-    }
+  }
 
   ngAfterViewInit(): void {
     this.BreadCrumb.setBreadcrumb();
@@ -67,7 +68,6 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       });
     });
   }
-
 
   filtrarColumna(columna: number, valor: string) {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
@@ -101,11 +101,11 @@ dtColumnSearchingOptions: DataTables.Settings = {};
     }).then((result) => {
       if (result.isConfirmed) {
         this.sitiosService.eliminarSitio(id).subscribe({
-          next: (resp:any) => {
+          next: (resp: any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
-            this.sitiosAP = this.sitiosAP.filter(s => s.sitioId !== id);
+            this.sitiosAP = this.sitiosAP.filter((s) => s.sitioId !== id);
           },
-          error: (err:any) => {
+          error: (err: any) => {
             Swal.fire('Error', 'No se pudo eliminar el sitio.', 'error');
             console.error('Error eliminando', err);
           }

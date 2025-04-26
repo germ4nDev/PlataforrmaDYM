@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: 'log-actividades',
         loadComponent: () => import('./log-actividades/log-actividades.component').then(m => m.LogActividadesComponent)
+      },
+      {
+          path: 'new-licencia',
+          loadComponent: () => import('./licencias-afiliado/new-licencia/new-licencia.component').then(m => m.NewLicenciaComponent)
       }
 
     ]

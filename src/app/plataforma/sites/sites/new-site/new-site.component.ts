@@ -1,4 +1,3 @@
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -19,29 +18,30 @@ export class FormSitio {
 }
 
 @Component({
-    selector: 'app-new-site',
-    standalone: true,
-    imports: [CommonModule, SharedModule, NarikCustomValidatorsModule],
-    templateUrl: './new-site.component.html',
-    styleUrl: './new-site.component.scss'
-  })
+  selector: 'app-new-site',
+  standalone: true,
+  imports: [CommonModule, SharedModule, NarikCustomValidatorsModule],
+  templateUrl: './new-site.component.html',
+  styleUrl: './new-site.component.scss'
+})
 export class NewSiteComponent implements OnInit {
   FormSitio!: FormSitio;
   form: undefined;
   isSubmit: boolean;
   modoEdicion: boolean = false;
 
-  constructor(private router: Router,
-     private sitiosService:PTLSitiosAPService,
-     private route: ActivatedRoute,
-     private BreadCrumb : BreadcrumbComponent)
-     {
-        this.isSubmit = false;
-     }
+  constructor(
+    private router: Router,
+    private sitiosService: PTLSitiosAPService,
+    private route: ActivatedRoute,
+    private BreadCrumb: BreadcrumbComponent
+  ) {
+    this.isSubmit = false;
+  }
 
   ngOnInit() {
     this.BreadCrumb.setBreadcrumb();
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const id = params['sitioId'];
       console.log('me llena el Id', id);
 
@@ -55,8 +55,7 @@ export class NewSiteComponent implements OnInit {
             Swal.fire('Error', 'No se pudo obtener el sitio', 'error');
           }
         });
-      }
-      else {
+      } else {
         this.modoEdicion = false;
         this.FormSitio = {
           sitioId: 0,
@@ -79,42 +78,39 @@ export class NewSiteComponent implements OnInit {
     }
 
     if (this.modoEdicion) {
-        this.sitiosService.modificarSitio(this.FormSitio).subscribe({
-          next: (resp: any) => {
-            if (resp.ok) {
-              Swal.fire('', 'El sitio se modificó correctamente', 'success');
-              this.router.navigate(['/sites/sites']);
-            } else {
-              Swal.fire('Error', resp.message || 'No se pudo actualizar el sitio', 'error');
-            }
-          },
-          error: (err: any) => {
-            console.error(err);
-            Swal.fire('Error', 'No se pudo actualizar el sitio', 'error');
+      this.sitiosService.modificarSitio(this.FormSitio).subscribe({
+        next: (resp: any) => {
+          if (resp.ok) {
+            Swal.fire('', 'El sitio se modificó correctamente', 'success');
+            this.router.navigate(['/sites/sites']);
+          } else {
+            Swal.fire('Error', resp.message || 'No se pudo actualizar el sitio', 'error');
           }
-        });
-      }
-      else
-      {
-        this.sitiosService.insertarSitio(this.FormSitio).subscribe({
-            next: (resp:any) => {
-              if (resp.ok) {
-                Swal.fire('', 'El sitio se insertó correctamente', 'success');
-                form.resetForm();
-                this.isSubmit = false;
-                this.router.navigate(['/sites/sites']);
-              }
-            },
-            error: (err:any) => {
-              console.error(err);
-              Swal.fire('Error', 'No se pudo insertar el sitio', 'error');
-            }
-          });
-      }
+        },
+        error: (err: any) => {
+          console.error(err);
+          Swal.fire('Error', 'No se pudo actualizar el sitio', 'error');
+        }
+      });
+    } else {
+      this.sitiosService.insertarSitio(this.FormSitio).subscribe({
+        next: (resp: any) => {
+          if (resp.ok) {
+            Swal.fire('', 'El sitio se insertó correctamente', 'success');
+            form.resetForm();
+            this.isSubmit = false;
+            this.router.navigate(['/sites/sites']);
+          }
+        },
+        error: (err: any) => {
+          console.error(err);
+          Swal.fire('Error', 'No se pudo insertar el sitio', 'error');
+        }
+      });
+    }
   }
 
   btnRegresarSitio() {
     this.router.navigate(['/sites/sites']);
   }
 }
-

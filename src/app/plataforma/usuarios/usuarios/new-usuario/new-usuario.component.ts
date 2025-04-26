@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
-// import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { PTLUsuariosService } from 'src/app/theme/shared/service/ptlusuarios.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import Swal from 'sweetalert2';
@@ -33,7 +33,7 @@ export class NewUsuarioComponent {
 
   constructor(private router: Router,
      private route: ActivatedRoute,
-    //  private BreadCrumb : BreadcrumbComponent,
+     private BreadCrumb : BreadcrumbComponent,
     private usuariosService : PTLUsuariosService)
      {
         this.isSubmit = false;
@@ -48,9 +48,8 @@ export class NewUsuarioComponent {
          const timestamp = new Date().toISOString().replace(/[-:.TZ]/g, '');
          const originalName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
          const extension = file.name.split('.').pop();
-        //  const fileName = `${originalName}_${timestamp}.${extension}`;
-        const fileName = `${originalName}.${extension}`;
-        
+         const fileName = `${originalName}_${timestamp}.${extension}`;
+
          this.selectedFile = new File([file], fileName, { type: file.type });
          this.FormUsuario.fotoUsuario = fileName;
        }
@@ -58,7 +57,7 @@ export class NewUsuarioComponent {
     //  fin adjuntarimagen
 
   ngOnInit() {
-    // this.BreadCrumb.setBreadcrumb();
+    this.BreadCrumb.setBreadcrumb();
     this.route.queryParams.subscribe(params => {
       const id = params['usuarioId'];
       console.log('me llena el Id', id);

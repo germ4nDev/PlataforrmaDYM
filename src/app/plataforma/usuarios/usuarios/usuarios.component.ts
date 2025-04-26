@@ -26,7 +26,9 @@ dtColumnSearchingOptions: DataTables.Settings = {};
   usuarios: PTLUsuarios[]=[];
 
   constructor(private router: Router,
-    private usuariosService : PTLUsuariosService) {}
+    private usuariosService : PTLUsuariosService,
+    private BreadCrumb: BreadcrumbComponent
+) {}
 
   ngOnInit() {
     this.dtColumnSearchingOptions = {
@@ -53,7 +55,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
     }
 
   ngAfterViewInit(): void {
-    this['BreadCrumb'].setBreadcrumb();
+    this.BreadCrumb.setBreadcrumb();
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.columns().every(function () {
         const that = this;
