@@ -35,6 +35,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
         responsive: true,
         columns: [
           { title: 'Foto', data: 'fotoUsuario' },
+          { title: 'Identificación', data: 'identificacionUsuario' },
           { title: 'Nombre', data: 'nombreUsuario' },
           { title: 'Descripción', data: 'descripcionUsuario' },
           { title: 'Correo', data: 'correoUsuario' },

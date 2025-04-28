@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 export class FormUsuario {
     usuarioId!: number;
     fotoUsuario!: string;
+    identificacionUsuario!: number;
     nombreUsuario!: string;
     descripcionUsuario!: string;
     correoUsuario!: string;
@@ -39,7 +40,7 @@ export class NewUsuarioComponent {
         this.isSubmit = false;
      }
 
-    //  adjuntarimagen
+    //  adjuntarImagen
      selectedFile: File | null = null;
 
      onFileSelected(event: any): void {
@@ -77,6 +78,7 @@ export class NewUsuarioComponent {
         this.modoEdicion = false;
         this.FormUsuario = {
             usuarioId: 0,
+            identificacionUsuario: 0,
             fotoUsuario: '',
             nombreUsuario: '',
             descripcionUsuario: '',

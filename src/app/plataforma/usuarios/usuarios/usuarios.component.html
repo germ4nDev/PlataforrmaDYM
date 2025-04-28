@@ -23,6 +23,7 @@
 						<thead>
                             <tr>
 								<th>Foto</th>
+								<th>Identificación</th>
                                 <th>Nombre</th>
 								<th>Descripción</th>
 								<th>Correo</th>
@@ -35,6 +36,9 @@
 							<tr *ngFor="let usuario of usuarios">
                                 <td>
                                     <img src="assets/images/user/{{ usuario.fotoUsuario }}" alt="user image" class="img-radius align-top m-r-15" style="width: 40px" />
+								</td>
+                                <td>
+									{{ usuario.identificacionUsuario }}
 								</td>
 								<td>
 									{{ usuario.nombreUsuario }}
@@ -69,9 +73,17 @@
 							<tr>
                                 <th>
                                 </th>
+                                <th>
+                                    <input #identificacionUsuario
+                                        (keyup)="filtrarColumna(1, identificacionUsuario.value)"
+                                        type="number"
+                                        placeholder="Filtro identificación"
+                                        name="filtro-identificacion"
+                                        class="form-control">
+                                </th>
 								<th>
                                     <input #nombreUsuario
-                                        (keyup)="filtrarColumna(1, nombreUsuario.value)"
+                                        (keyup)="filtrarColumna(2, nombreUsuario.value)"
                                         type="text"
                                         placeholder="Filtro nombre"
                                         name="filtro-nombre"
@@ -79,7 +91,7 @@
                                 </th>
 								<th>
 									<input #descripcionUsuario
-										(keyup)="filtrarColumna(1, descripcionUsuario.value)"
+										(keyup)="filtrarColumna(3, descripcionUsuario.value)"
 										type="text"
 										placeholder="Filtro descripción"
 										name="filtro-descripcion"
@@ -87,7 +99,7 @@
 								</th>
 								<th>
 									<input #correoUsuario
-										(keyup)="filtrarColumna(2, correoUsuario.value)"
+										(keyup)="filtrarColumna(4, correoUsuario.value)"
 										type="text"
 										placeholder="Filtro correo"
 										name="filtro-correo"
@@ -95,7 +107,7 @@
 								</th>
 								<th>
 									<input #claveUsuario
-										(keyup)="filtrarColumna(3, claveUsuario.value)"
+										(keyup)="filtrarColumna(5, claveUsuario.value)"
 										type="text"
 										placeholder="Filtro clave"
 										name="filtro-clave"
@@ -103,7 +115,7 @@
 								</th>
 								<th>
 									<input #estadoUsuario
-										(keyup)="filtrarColumna(4, estadoUsuario.value)"
+										(keyup)="filtrarColumna(6, estadoUsuario.value)"
 										type="text"
 										placeholder="Filtro estado"
 										name="filtro-estado"

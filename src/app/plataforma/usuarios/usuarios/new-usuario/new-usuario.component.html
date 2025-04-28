@@ -43,6 +43,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="form-control-label" for="identificacionUsuario">identificación</label>
+                                <input class="form-control input-md" id="identificacionUsuario" name="identificacionUsuario" type="number"
+                                    placeholder="identificación del usuario"
+                                    [ngClass]="{'is-invalid': !identificacionUsuario.valid && (identificacionUsuario.dirty || identificacionUsuario.touched || isSubmit)}"
+                                    #identificacionUsuario="ngModel" required [(ngModel)]="FormUsuario.identificacionUsuario" />
+                                <label *ngIf="!identificacionUsuario.valid && (identificacionUsuario.dirty || identificacionUsuario.touched || isSubmit)"
+                                    class="error jquery-validation-error small form-text invalid-feedback">
+                                    Por favor, Ingrese una identificación. Este campo es obligatorio.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="form-control-label" for="nombreUsuario">nombre</label>
                                 <input class="form-control input-md" id="nombreUsuario" name="nombreUsuario" type="text"
                                     placeholder="nombre del usuario"

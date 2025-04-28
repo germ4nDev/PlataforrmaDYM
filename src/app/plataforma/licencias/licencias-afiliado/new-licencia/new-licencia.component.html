@@ -9,11 +9,11 @@
                         <app-breadcrumb></app-breadcrumb>
                     </div>
                     <div class="col-sm-6 justify-content-end d-flex gap-3">
-                        <button type="button" class="btn-NuevoLicencia" (click)="btnInsertEditLicencia(validationForm)">
+                        <button type="button" class="btn-NuevaLicencia" (click)="btnInsertEditLicencia(validationForm)">
                             {{ modoEdicion ? 'Modificar' : 'Insertar' }}
                             <i class="feather ms-2" [ngClass]="modoEdicion ? 'icon-edit' : 'icon-plus'"></i>
                         </button>
-                        <button type="button" class="btn-NuevoLicencia" (click)="btnRegresarLicencia()">
+                        <button type="button" class="btn-NuevaLicencia" (click)="btnRegresarLicencia()">
                             Regresar
                             <i class="feather icon-arrow-left ms-2"></i>
                         </button>
@@ -31,8 +31,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="nombreLicencia">nombre</label>
-                                <input class="form-control input-md" id="nombreLicencia" name="nombreLicencia" type="text"
-                                    placeholder="nombre de la Licencia"
+                                <input class="form-control input-md" id="nombreLicencia" name="nombreLicencia"
+                                    type="text" placeholder="nombre de la Licencia"
                                     [ngClass]="{'is-invalid': !nombreLicencia.valid && (nombreLicencia.dirty || nombreLicencia.touched || isSubmit)}"
                                     #nombreLicencia="ngModel" required [(ngModel)]="FormLicencia.nombreLicencia" />
                                 <label
@@ -63,28 +63,16 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Fecha Creación</label>
-                                <input type="text" class="form-control" name="fechaCreacion" placeholder="Fecha Cración"
-                                    [ngClass]="{'is-invalid': !fechaCreacion.valid && (fechaCreacion.dirty || fechaCreacion.touched || isSubmit) }"
-                                    #fechaCreacion="ngModel" required [(ngModel)]="FormLicencia.fechaCreacion" />
-                                <label *ngIf="!fechaCreacion.valid && (fechaCreacion.dirty || fechaCreacion.touched || isSubmit)"
-                                    class="error jquery-validation-error small form-text invalid-feedback">
-                                    Por favor, ingrese una fecha. Este campo es obligatorio.
-                                </label>
+                                <label for="fechaCreacion" class="form-label">Fecha Creación</label>
+                                <input type="date" id="fechaCreacion" class="form-control" name="fechaCreacion"
+                                    [(ngModel)]="fechaCreacionFormatted" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-control-label" for="fechaVencimiento">Fecha Vencimiento</label>
-                                <input class="form-control input-md" id="fechaVencimiento" name="fechaVencimiento" type="text"
-                                    placeholder="Fecha Vencimiento"
-                                    [ngClass]="{'is-invalid': !fechaVencimiento.valid && (fechaVencimiento.dirty || fechaVencimiento.touched || isSubmit)}"
-                                    #fechaVencimiento="ngModel" required [(ngModel)]="FormLicencia.fechaVencimiento" />
-                                <label
-                                    *ngIf="!fechaVencimiento.valid && (fechaVencimiento.dirty || fechaVencimiento.touched || isSubmit)"
-                                    class="error jquery-validation-error small form-text invalid-feedback">
-                                    Por favor, Ingrese la Fecha. Este campo es obligatorio.
-                                </label>
+                                <label for="fechaVencimiento" class="form-label">Fecha Vencimiento</label>
+                                <input type="date" id="fechaVencimiento" class="form-control" name="fechaVencimiento"
+                                    [(ngModel)]="fechaVencimientoFormatted" />
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -93,8 +81,8 @@
                                 <textarea class="form-control" placeholder="Descripcion de la Licencia"
                                     name="descripcionLicencia"
                                     [ngClass]="{'is-invalid': !descripcionLicencia.valid && (descripcionLicencia.dirty || descripcionLicencia.touched || isSubmit)}"
-                                    #descripcionLicencia="ngModel" required [(ngModel)]="FormLicencia.descripcionLicencia"
-                                    rows="5">
+                                    #descripcionLicencia="ngModel" required
+                                    [(ngModel)]="FormLicencia.descripcionLicencia" rows="5">
                                 </textarea>
                                 <label
                                     *ngIf="!descripcionLicencia.valid && (descripcionLicencia.dirty || descripcionLicencia.touched || isSubmit)"

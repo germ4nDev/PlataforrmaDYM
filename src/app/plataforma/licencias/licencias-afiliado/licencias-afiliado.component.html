@@ -39,10 +39,10 @@
                                     {{ licencia.descripcionLicencia }}
                                 </td>
                                 <td>
-                                    {{ licencia.fechaCreacion }}
+                                    {{ licencia.fechaCreacion | date: 'dd-MM-yyyy' }}
                                 </td>
                                 <td>
-                                    {{ licencia.fechaVencimiento }}
+                                    {{ licencia.fechaVencimiento | date: 'dd-MM-yyyy' }}
                                 </td>
                                 <td>
                                     {{ getEstado(licencia.estadoLicencia)}}
@@ -76,7 +76,7 @@
                                         class="form-control">
                                 </th>
                                 <th>
-                                    <input #fechaCreacion (keyup)="filtrarColumna(2, fechaCreacion.value)" type="text"
+                                    <input #fechaCreacion (keyup)="filtrarColumna(2, fechaCreacion.value)" type="fecha"
                                         placeholder="Filtro Fecha creación" name="filtro-fechaCreacion" class="form-control">
                                 </th>
                                 <th>

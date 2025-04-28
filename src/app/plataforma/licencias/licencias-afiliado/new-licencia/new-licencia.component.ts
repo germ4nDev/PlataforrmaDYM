@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
@@ -14,8 +14,8 @@ export class FormLicencia {
     nombreLicencia!: string;
     descripcionLicencia!: string;
     estadoLicencia!: boolean;
-    fechaCreacion!: date;
-    fechaVencimiento!: date;
+    fechaCreacion!: Date;
+    fechaVencimiento!: Date;
   }
 
 @Component({
@@ -45,12 +45,14 @@ export class NewLicenciaComponent {
     this.route.queryParams.subscribe((params) => {
       const id = params['licenciaId'];
       console.log('me llena el Id', id);
-
       if (id) {
         this.modoEdicion = true;
         this.licenciasService.getLicenciaById(+id).subscribe({
           next: (resp: any) => {
             this.FormLicencia = resp.data;
+
+            this.FormLicencia.fechaCreacion = new Date(this.FormLicencia.fechaCreacion);
+            this.FormLicencia.fechaVencimiento = new Date(this.FormLicencia.fechaVencimiento);
           },
           error: () => {
             Swal.fire('Error', 'No se pudo obtener la licencia', 'error');
@@ -65,12 +67,32 @@ export class NewLicenciaComponent {
           nombreLicencia: '',
           descripcionLicencia: '',
           estadoLicencia: true,
-          fechaCreacion: date.Now,
-          fechaVencimiento: date.Now
+          fechaCreacion: new Date(),
+          fechaVencimiento: new Date()
         };
       }
     });
   }
+
+  // transformacion de Date
+  get fechaCreacionFormatted(): string {
+    return this.FormLicencia?.fechaCreacion
+      ? this.FormLicencia.fechaCreacion.toISOString().substring(0, 10)
+      : '';
+  }
+  set fechaCreacionFormatted(value: string) {
+    this.FormLicencia.fechaCreacion = new Date(value);
+  }
+
+  get fechaVencimientoFormatted(): string {
+    return this.FormLicencia?.fechaVencimiento
+      ? this.FormLicencia.fechaVencimiento.toISOString().substring(0, 10)
+      : '';
+  }
+  set fechaVencimientoFormatted(value: string) {
+    this.FormLicencia.fechaVencimiento = new Date(value);
+  }
+  // fin
 
   btnInsertEditLicencia(form: any) {
     this.isSubmit = true;
@@ -84,7 +106,7 @@ export class NewLicenciaComponent {
         next: (resp: any) => {
           if (resp.ok) {
             Swal.fire('', 'La licencia se modificó correctamente', 'success');
-            this.router.navigate(['/licencias/licencias']);
+            this.router.navigate(['/licencias/licencias-afiliado']);
           } else {
             Swal.fire('Error', resp.message || 'No se pudo actualizar la licencia', 'error');
           }
@@ -101,7 +123,7 @@ export class NewLicenciaComponent {
             Swal.fire('', 'La licencia se insertó correctamente', 'success');
             form.resetForm();
             this.isSubmit = false;
-            this.router.navigate(['/licencias/licencias']);
+            this.router.navigate(['/licencias/licencias-afiliado']);
           }
         },
         error: (err: any) => {
@@ -113,6 +135,6 @@ export class NewLicenciaComponent {
   }
 
   btnRegresarLicencia() {
-    this.router.navigate(['/licencias/licencias']);
+    this.router.navigate(['/licencias/licencias-afiliado']);
   }
 }
