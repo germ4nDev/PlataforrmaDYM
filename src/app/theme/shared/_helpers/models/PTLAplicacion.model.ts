@@ -4,5 +4,6 @@ export class PTLAplicacion {
         public nombreAplicacion?: string,
         public descripcionAplicacion?: string,
         public estadoAplicacion?: boolean,
+        public codigoAplicacion?: string,
     ) {}
 }
