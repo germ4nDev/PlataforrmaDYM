@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { Router} from '@angular/router';
@@ -23,13 +25,15 @@ export class SitesComponent implements OnInit, AfterViewInit {
     @ViewChild(DataTableDirective, { static: false })
     datatableElement!: DataTableDirective;
 
-dtColumnSearchingOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
-  sitiosAP: PTLSitiosAP[]=[];
+    dtColumnSearchingOptions: DataTables.Settings = {};
+    dtTrigger: Subject<any> = new Subject<any>();
+    sitiosAP: PTLSitiosAP[]=[];
 
-  constructor(private router: Router,
-     private sitiosService:PTLSitiosAPService,
-      private BreadCrumb : BreadcrumbComponent) {}
+  constructor(
+    private router: Router,
+    private sitiosService:PTLSitiosAPService,
+    private BreadCrumb : BreadcrumbComponent
+  ) {}
 
   ngOnInit() {
 
@@ -47,13 +51,14 @@ dtColumnSearchingOptions: DataTables.Settings = {};
 
       this.consultarSitios();
   }
+
   consultarSitios () {
     this.sitiosService.getSitios().subscribe((sitios:any) => {
         console.log('Todos los sitios', sitios.resp.data);
         this.sitiosAP = sitios.resp.data;
         this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
     });
-    }
+  }
 
   ngAfterViewInit(): void {
     this.BreadCrumb.setBreadcrumb();
@@ -69,7 +74,6 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       });
     });
   }
-
 
   filtrarColumna(columna: number, valor: string) {
     this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
