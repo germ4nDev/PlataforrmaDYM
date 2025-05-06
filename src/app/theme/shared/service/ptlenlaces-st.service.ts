@@ -33,7 +33,7 @@ export class PTLEnlacesSTService {
     }
 
     getEnlaces() {
-        const url = `${ base_url }/api/PTLEnlacesST/ListaEnlaces`;
+        const url = `${ base_url }/api/PTLEnlacesST/GetListEnlaces`;
         return this.http.get<PTLEnlaceST[]>( url, this.headers )
         .pipe(
             map((resp: PTLEnlaceST[]) => {
