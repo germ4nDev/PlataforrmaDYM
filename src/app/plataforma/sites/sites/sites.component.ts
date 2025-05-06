@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.model';
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+
+// project import
 import { BreadcrumbComponent } from '../../../theme/shared/components/breadcrumb/breadcrumb.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
@@ -17,40 +21,42 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
   styleUrl: './sites.component.scss'
 })
 export class SitesComponent implements OnInit, AfterViewInit {
-  [x: string]: any;
-  @ViewChild(DataTableDirective, { static: false })
-  datatableElement!: DataTableDirective;
+    [x: string]: any;
+    @ViewChild(DataTableDirective, { static: false })
+    datatableElement!: DataTableDirective;
 
-  dtColumnSearchingOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
-  sitiosAP: PTLSitiosAP[] = [];
+    dtColumnSearchingOptions: DataTables.Settings = {};
+    dtTrigger: Subject<any> = new Subject<any>();
+    sitiosAP: PTLSitiosAP[]=[];
 
   constructor(
     private router: Router,
-    private sitiosService: PTLSitiosAPService,
-    private BreadCrumb: BreadcrumbComponent
+    private sitiosService:PTLSitiosAPService,
+    private BreadCrumb : BreadcrumbComponent
   ) {}
 
   ngOnInit() {
-    this.dtColumnSearchingOptions = {
-      responsive: true,
-      columns: [
-        { title: 'Nombre', data: 'nombreSitio' },
-        { title: 'Descripción', data: 'descripcionSitio' },
-        { title: 'URL', data: 'urlSitio' },
-        { title: 'Puerto Sitio', data: 'puertoSitio' },
-        { title: 'Estado', data: 'estadoSitio' },
-        { title: 'Opciones', data: 'opciones' }
-      ]
-    };
 
-    this.consultarSitios();
+    this.dtColumnSearchingOptions = {
+        responsive: true,
+        columns: [
+          { title: 'Nombre', data: 'nombreSitio' },
+          { title: 'Descripción', data: 'descripcionSitio' },
+          { title: 'URL', data: 'urlSitio' },
+          { title: 'Puerto Sitio', data: 'puertoSitio' },
+          { title: 'Estado', data: 'estadoSitio' },
+          { title: 'Opciones', data: 'opciones' },
+        ]
+      };
+
+      this.consultarSitios();
   }
-  consultarSitios() {
-    this.sitiosService.getSitios().subscribe((sitios: any) => {
-      console.log('Todos los sitios', sitios.resp.data);
-      this.sitiosAP = sitios.resp.data;
-      this.dtTrigger.next(null); // <--- Dispara la actualización de la tabla
+
+  consultarSitios () {
+    this.sitiosService.getSitios().subscribe((sitios:any) => {
+        console.log('Todos los sitios', sitios.resp.data);
+        this.sitiosAP = sitios.resp.data;
+        this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
     });
   }
 
@@ -101,11 +107,11 @@ export class SitesComponent implements OnInit, AfterViewInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.sitiosService.eliminarSitio(id).subscribe({
-          next: (resp: any) => {
+          next: (resp:any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
-            this.sitiosAP = this.sitiosAP.filter((s) => s.sitioId !== id);
+            this.sitiosAP = this.sitiosAP.filter(s => s.sitioId !== id);
           },
-          error: (err: any) => {
+          error: (err:any) => {
             Swal.fire('Error', 'No se pudo eliminar el sitio.', 'error');
             console.error('Error eliminando', err);
           }
