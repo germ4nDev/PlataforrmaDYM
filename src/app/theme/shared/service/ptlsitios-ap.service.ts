@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -96,6 +97,4 @@ export class PTLSitiosAPService {
             })
           );
       }
-
-
 }
