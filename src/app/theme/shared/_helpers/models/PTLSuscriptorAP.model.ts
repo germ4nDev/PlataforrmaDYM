@@ -5,6 +5,6 @@ export class PTLsuarioST {
         public nombreUsuario : string,
         public claveUsuario : string,
         public correoUsuario : string,
-        public estadoUsuario : number
+        public estadoUsuario : boolean
    ) {}
 }

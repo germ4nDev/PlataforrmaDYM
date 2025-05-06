@@ -1,27 +1,78 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="card">
+        <div class="card card-header-sticky">
             <div class="card-header">
-                <h5>Column Searching</h5>
+                <h4>Roles</h4>
+                <hr>
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex">
+                        <button type="button" (click)="nuevoRol()" class="btn-NuevoRol">
+                            Nuevo Rol
+                        </button>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table datatable [dtOptions]="dtColumnSearchingOptions"
-                        class="table table-striped row-border table-hover">
+                    <table [dtOptions]="dtColumnSearchingOptions" datatable class="table row-border">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let roles of rolesAP">
+                                <td>
+                                    {{ roles.nombreRol }}
+                                </td>
+                                <td>
+                                    {{ roles.descripcionRol }}
+                                </td>
+                                <td>
+                                    {{ getEstado(roles.estadoRol)}}
+                                </td>
+                                <td style="text-align: center; width: 10%;">
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <imput type="button"
+                                            class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarRol(roles.rolId)" title="Modificar Rol">
+                                            <i class="feather icon-edit"></i>
+                                        </imput>
+                                        <imput type="button"
+                                            class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarRol(roles.rolId, roles.nombreRol)"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Rol">
+                                            <i class="feather icon-trash-2"></i>
+                                        </imput>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                         <tfoot>
                             <tr>
-                                <th><input type="text" placeholder="Search Name" name="search-name"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Position" name="search-position"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Office" name="search-office"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Age" name="search-age"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Satrt Date" name="search-date"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Salary" name="search-salary"
-                                        class="form-control" /></th>
+                                <th>
+                                    <input #nombreRol (keyup)="filtrarColumna(0, nombreRol.value)" type="text"
+                                        placeholder="Filtro Nombre" name="filtro-nombre" class="form-control">
+                                </th>
+                                <th>
+                                    <input #descripcionRol (keyup)="filtrarColumna(1, descripcionRol.value)"
+                                        type="text" placeholder="Filtro descripción" name="filtro-nombre"
+                                        class="form-control">
+                                </th>
+                                <th>
+                                    <input #estadoRol (keyup)="filtrarColumna(2, estadoRol.value)" type="text"
+                                        placeholder="Filtro Estado" name="filtro-estado" class="form-control">
+                                </th>
+                                <th>
+                                </th>
                             </tr>
                         </tfoot>
                     </table>

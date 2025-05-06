@@ -33,7 +33,7 @@ export class PTLContenidosELService {
     }
 
     getContenido() {
-        const url = `${ base_url }/api/PTLContenidosEL/ListaContenidos`;
+        const url = `${ base_url }/api/PTLContenidosEL/GetListContenidos`;
         return this.http.get<PTLContenidosEL[]>( url, this.headers )
         .pipe(
             map((resp: PTLContenidosEL[]) => {

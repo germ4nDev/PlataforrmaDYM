@@ -1,32 +1,133 @@
 <div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Column Searching</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table datatable [dtOptions]="dtColumnSearchingOptions"
-                        class="table table-striped row-border table-hover">
-                        <tfoot>
-                            <tr>
-                                <th><input type="text" placeholder="Search Name" name="search-name"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Position" name="search-position"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Office" name="search-office"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Age" name="search-age"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Satrt Date" name="search-date"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Salary" name="search-salary"
-                                        class="form-control" /></th>
-                            </tr>
-                        </tfoot>
-                    </table>
+	<div class="col-sm-12">
+        <div class="card card-header-sticky">
+			<div class="card-header">
+				<h4>Usuarios</h4>
+                <hr>
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex">
+                        <button type="button" (click)="nuevoUsuario()" class="btn-NuevoUsuario">
+                            Nuevo Usuario
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+		<div class="card">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table row-border">
+						<thead>
+                            <tr>
+								<th>Foto</th>
+								<th>Identificación</th>
+                                <th>Nombre</th>
+								<th>Descripción</th>
+								<th>Correo</th>
+								<th>Clave</th>
+								<th>Estado</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let usuario of usuarios">
+                                <td>
+                                    <img src="assets/images/user/{{ usuario.fotoUsuario }}" alt="user image" class="img-radius align-top m-r-15" style="width: 40px" />
+								</td>
+                                <td>
+									{{ usuario.identificacionUsuario }}
+								</td>
+								<td>
+									{{ usuario.nombreUsuario }}
+								</td>
+								<td>
+									{{ usuario.descripcionUsuario }}
+								</td>
+								<td>
+									{{ usuario.correoUsuario }}
+								</td>
+								<td>
+									{{ usuario.claveUsuario }}
+								</td>
+								<td>
+									{{ getEstado(usuario.estadoUsuario)}}
+								</td>
+								<td style="text-align: center; width: 10%;">
+									<div class="d-flex flex-wrap gap-2">
+										<imput type="button" class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarUsuario(usuario.usuarioId)" title="Modificar Usuario">
+											<i class="feather icon-edit"></i>
+										</imput>
+										<imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarUsuario(usuario.usuarioId, usuario.nombreUsuario)" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Usuario">
+											<i class="feather icon-trash-2"></i>
+										</imput>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+                        <tfoot>
+							<tr>
+                                <th>
+                                </th>
+                                <th>
+                                    <input #identificacionUsuario
+                                        (keyup)="filtrarColumna(1, identificacionUsuario.value)"
+                                        type="number"
+                                        placeholder="Filtro identificación"
+                                        name="filtro-identificacion"
+                                        class="form-control">
+                                </th>
+								<th>
+                                    <input #nombreUsuario
+                                        (keyup)="filtrarColumna(2, nombreUsuario.value)"
+                                        type="text"
+                                        placeholder="Filtro nombre"
+                                        name="filtro-nombre"
+                                        class="form-control">
+                                </th>
+								<th>
+									<input #descripcionUsuario
+										(keyup)="filtrarColumna(3, descripcionUsuario.value)"
+										type="text"
+										placeholder="Filtro descripción"
+										name="filtro-descripcion"
+										class="form-control">
+								</th>
+								<th>
+									<input #correoUsuario
+										(keyup)="filtrarColumna(4, correoUsuario.value)"
+										type="text"
+										placeholder="Filtro correo"
+										name="filtro-correo"
+										class="form-control">
+								</th>
+								<th>
+									<input #claveUsuario
+										(keyup)="filtrarColumna(5, claveUsuario.value)"
+										type="text"
+										placeholder="Filtro clave"
+										name="filtro-clave"
+										class="form-control">
+								</th>
+								<th>
+									<input #estadoUsuario
+										(keyup)="filtrarColumna(6, estadoUsuario.value)"
+										type="text"
+										placeholder="Filtro estado"
+										name="filtro-estado"
+										class="form-control">
+								</th>
+                                <th>
+                                </th>
+							</tr>
+                        </tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

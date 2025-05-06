@@ -1,27 +1,94 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="card">
+        <div class="card card-header-sticky">
             <div class="card-header">
-                <h5>Column Searching</h5>
+                <h4>Licencias/Afilicado</h4>
+                <hr>
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex">
+                        <button type="button" (click)="nuevaLicencia()" class="btn-NuevaLicencia">
+                            Nueva Licencia
+                        </button>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table datatable [dtOptions]="dtColumnSearchingOptions"
-                        class="table table-striped row-border table-hover">
+                    <table [dtOptions]="dtColumnSearchingOptions" datatable class="table row-border">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Fecha Creación</th>
+                                <th>Fecha Vencimiento</th>
+                                <th>Estado</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let licencia of licenciasAP">
+                                <td>
+                                    {{ licencia.nombreLicencia }}
+                                </td>
+                                <td>
+                                    {{ licencia.descripcionLicencia }}
+                                </td>
+                                <td>
+                                    {{ licencia.fechaCreacion | date: 'dd-MM-yyyy' }}
+                                </td>
+                                <td>
+                                    {{ licencia.fechaVencimiento | date: 'dd-MM-yyyy' }}
+                                </td>
+                                <td>
+                                    {{ getEstado(licencia.estadoLicencia)}}
+                                </td>
+                                <td style="text-align: center; width: 10%;">
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <imput type="button"
+                                            class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarLicencia(licencia.licenciaId)" title="Modificar Licencia">
+                                            <i class="feather icon-edit"></i>
+                                        </imput>
+                                        <imput type="button"
+                                            class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarLicencia(licencia.licenciaId, licencia.nombreLicencia)"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Licencia">
+                                            <i class="feather icon-trash-2"></i>
+                                        </imput>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                         <tfoot>
                             <tr>
-                                <th><input type="text" placeholder="Search Name" name="search-name"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Position" name="search-position"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Office" name="search-office"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Age" name="search-age"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Satrt Date" name="search-date"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Salary" name="search-salary"
-                                        class="form-control" /></th>
+                                <th>
+                                    <input #nombreLicencia (keyup)="filtrarColumna(0, nombreLicencia.value)" type="text"
+                                        placeholder="Filtro Nombre" name="filtro-nombre" class="form-control">
+                                </th>
+                                <th>
+                                    <input #descripcionLicencia (keyup)="filtrarColumna(1, descripcionLicencia.value)"
+                                        type="text" placeholder="Filtro descripción" name="filtro-descricion"
+                                        class="form-control">
+                                </th>
+                                <th>
+                                    <input #fechaCreacion (keyup)="filtrarColumna(2, fechaCreacion.value)" type="fecha"
+                                        placeholder="Filtro Fecha creación" name="filtro-fechaCreacion" class="form-control">
+                                </th>
+                                <th>
+                                    <input #fechaVencimiento (keyup)="filtrarColumna(3, fechaVencimiento.value)" type="text"
+                                        placeholder="Filtro Fecha vencimiento" name="filtro-fechaVencimiento" class="form-control">
+                                </th>
+                                <th>
+                                    <input #estadoLicencia (keyup)="filtrarColumna(4, estadoLicencia.value)" type="text"
+                                        placeholder="Filtro Estado" name="filtro-estado" class="form-control">
+                                </th>
+                                <th>
+                                </th>
                             </tr>
                         </tfoot>
                     </table>

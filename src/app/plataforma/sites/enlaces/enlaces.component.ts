@@ -15,7 +15,7 @@ import { PTLEnlacesSTService } from 'src/app/theme/shared/service/ptlenlaces-st.
   standalone: true,
   imports: [CommonModule, DataTablesModule, SharedModule, BreadcrumbComponent],
   templateUrl: './enlaces.component.html',
-  styleUrls: ['./enlaces.component.css']
+  styleUrls: ['./enlaces.component.scss']
 })
 export class EnlacesComponent implements OnInit, AfterViewInit  {
     [x: string]: any;
