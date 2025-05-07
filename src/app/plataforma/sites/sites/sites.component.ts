@@ -3,13 +3,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableDirective, DataTablesModule } from 'angular-datatables';
 import { Router} from '@angular/router';
-import { PTLSitiosAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.model';
+import { PTLSitioAP } from 'src/app/theme/shared/_helpers/models/PTLSitioAP.model';
 import { PTLSitiosAPService } from 'src/app/theme/shared/service/ptlsitios-ap.service';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-
-// project import
 import { BreadcrumbComponent } from '../../../theme/shared/components/breadcrumb/breadcrumb.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 
@@ -27,7 +25,7 @@ export class SitesComponent implements OnInit, AfterViewInit {
 
     dtColumnSearchingOptions: DataTables.Settings = {};
     dtTrigger: Subject<any> = new Subject<any>();
-    sitiosAP: PTLSitiosAP[]=[];
+    sitiosAP: PTLSitioAP[]=[];
 
   constructor(
     private router: Router,
@@ -106,7 +104,7 @@ export class SitesComponent implements OnInit, AfterViewInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.sitiosService.eliminarSitio(id).subscribe({
+        this.sitiosService.deleteSitio(id).subscribe({
           next: (resp:any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
             this.sitiosAP = this.sitiosAP.filter(s => s.sitioId !== id);

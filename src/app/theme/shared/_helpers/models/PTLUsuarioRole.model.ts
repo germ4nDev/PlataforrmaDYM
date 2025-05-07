@@ -1,7 +1,8 @@
-export class PTLUsuarioRoleAP {
+export class PTLUsuarioRole {
     constructor (
-        public usuarioRolId : number,
+        public usuarioRoleId : number,
         public usuarioId : number,
-        public rolId : number
+        public roleId : number,
+        public estadoRole : boolean
    ) {}
 }

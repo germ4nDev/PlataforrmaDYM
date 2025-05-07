@@ -84,7 +84,7 @@ export class NewEnlaceComponent implements OnInit {
       }
 
       if (this.modoEdicion) {
-          this.enlacesService.modificarEnlaces(this.FormEnlace).subscribe({
+          this.enlacesService.updateEnlace(this.FormEnlace).subscribe({
             next: (resp: any) => {
               if (resp.ok) {
                 Swal.fire('', 'El enlace se modificó correctamente', 'success');
@@ -101,7 +101,7 @@ export class NewEnlaceComponent implements OnInit {
         }
         else
         {
-          this.enlacesService.insertarEnlace(this.FormEnlace).subscribe({
+          this.enlacesService.createEnlace(this.FormEnlace).subscribe({
               next: (resp:any) => {
                 if (resp.ok) {
                   Swal.fire('', 'El enlace se insertó correctamente', 'success');

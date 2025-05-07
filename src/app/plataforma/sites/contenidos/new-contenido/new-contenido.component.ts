@@ -76,7 +76,7 @@ export class NewContenidoComponent implements OnInit {
       }
 
       if (this.modoEdicion) {
-          this.contenidoService.modificarContenido(this.FormContenido).subscribe({
+          this.contenidoService.updateContenido(this.FormContenido).subscribe({
             next: (resp: any) => {
               if (resp.ok) {
                 Swal.fire('', 'El contenido se modificó correctamente', 'success');
@@ -93,7 +93,7 @@ export class NewContenidoComponent implements OnInit {
         }
         else
         {
-          this.contenidoService.insertarContenido(this.FormContenido).subscribe({
+          this.contenidoService.createContenido(this.FormContenido).subscribe({
               next: (resp:any) => {
                 if (resp.ok) {
                   Swal.fire('', 'El contenido se insertó correctamente', 'success');

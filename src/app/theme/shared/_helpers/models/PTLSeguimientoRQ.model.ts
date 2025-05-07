@@ -4,6 +4,6 @@ export class PTLSeguimientoRQ {
         public requerimientoId : number,
         public nombreSeguimiento : string,
         public descripcionSeguimiento : string,
-        public estadoSeguimiento : number
+        public estadoSeguimiento : boolean
    ) {}
 }

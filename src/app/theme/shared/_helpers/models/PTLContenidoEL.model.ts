@@ -1,4 +1,4 @@
-export class PTLContenidosEL {
+export class PTLContenidoEL {
     constructor (
         public contenidoId : number,
         public enlaceId : number,

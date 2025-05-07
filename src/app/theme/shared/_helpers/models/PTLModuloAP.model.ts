@@ -4,6 +4,7 @@ export class PTLModuloAP {
         public aplicacionId : number,
         public nombreModulo : string,
         public descripcionModulo : string,
-        public estadoModulo : number
+        public estadoModulo : boolean,
+        public codigoModulo : string
    ) {}
 }

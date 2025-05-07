@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { PTLUsuarios } from 'src/app/theme/shared/_helpers/models/PTLUsuarios.model';
+import { PTLUsuario } from 'src/app/theme/shared/_helpers/models/PTLUsuario.model';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { PTLUsuariosService } from 'src/app/theme/shared/service/ptlusuarios.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -23,7 +23,7 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
 
 dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  usuarios: PTLUsuarios[]=[];
+  usuarios: PTLUsuario[]=[];
 
   constructor(private router: Router,
     private usuariosService : PTLUsuariosService,

@@ -31,24 +31,24 @@
                         <tbody>
                             <tr *ngFor="let roles of rolesAP">
                                 <td>
-                                    {{ roles.nombreRol }}
+                                    {{ roles.nombreRole }}
                                 </td>
                                 <td>
-                                    {{ roles.descripcionRol }}
+                                    {{ roles.descripcionRole }}
                                 </td>
                                 <td>
-                                    {{ getEstado(roles.estadoRol)}}
+                                    {{ getEstado(roles.estadoRole )}}
                                 </td>
                                 <td style="text-align: center; width: 10%;">
                                     <div class="d-flex flex-wrap gap-2">
                                         <imput type="button"
                                             class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
-                                            (click)="editarRol(roles.rolId)" title="Modificar Rol">
+                                            (click)="editarRol(roles.roleId)" title="Modificar Rol">
                                             <i class="feather icon-edit"></i>
                                         </imput>
                                         <imput type="button"
                                             class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
-                                            (click)="eliminarRol(roles.rolId, roles.nombreRol)"
+                                            (click)="eliminarRol(roles.roleId, roles.nombreRole)"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Rol">
                                             <i class="feather icon-trash-2"></i>
                                         </imput>
@@ -59,16 +59,16 @@
                         <tfoot>
                             <tr>
                                 <th>
-                                    <input #nombreRol (keyup)="filtrarColumna(0, nombreRol.value)" type="text"
+                                    <input #nombreRole (keyup)="filtrarColumna(0, nombreRole.value)" type="text"
                                         placeholder="Filtro Nombre" name="filtro-nombre" class="form-control">
                                 </th>
                                 <th>
-                                    <input #descripcionRol (keyup)="filtrarColumna(1, descripcionRol.value)"
+                                    <input #descripcionRole (keyup)="filtrarColumna(1, descripcionRole.value)"
                                         type="text" placeholder="Filtro descripción" name="filtro-nombre"
                                         class="form-control">
                                 </th>
                                 <th>
-                                    <input #estadoRol (keyup)="filtrarColumna(2, estadoRol.value)" type="text"
+                                    <input #estadoRole (keyup)="filtrarColumna(2, estadoRole.value)" type="text"
                                         placeholder="Filtro Estado" name="filtro-estado" class="form-control">
                                 </th>
                                 <th>

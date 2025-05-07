@@ -1,4 +1,4 @@
-export class PTLEmpresasST {
+export class PTLEmpresaST {
     constructor (
         public empresaId : number,
         public suscriptorId : number,

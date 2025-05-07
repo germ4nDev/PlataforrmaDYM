@@ -112,11 +112,6 @@ const routes: Routes = [
                     import('./plataforma/aplicaciones/aplicaciones.module').then((module) => module.AplicacionesModule)
             },
             {
-                path: 'licencias',
-                loadChildren: () =>
-                    import('./plataforma/licencias/licencias.module').then((module) => module.LicenciasModule)
-            },
-            {
                 path: 'sites',
                 loadChildren: () =>
                     import('./plataforma/sites/sites.module').then((module) => module.SitesModule)
