@@ -78,7 +78,7 @@ export class NewSiteComponent implements OnInit {
     }
 
     if (this.modoEdicion) {
-      this.sitiosService.modificarSitio(this.FormSitio).subscribe({
+      this.sitiosService.updateSitio(this.FormSitio).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
             Swal.fire('', 'El sitio se modificó correctamente', 'success');
@@ -93,7 +93,7 @@ export class NewSiteComponent implements OnInit {
         }
       });
     } else {
-      this.sitiosService.insertarSitio(this.FormSitio).subscribe({
+      this.sitiosService.createSitio(this.FormSitio).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
             Swal.fire('', 'El sitio se insertó correctamente', 'success');

@@ -16,6 +16,7 @@ export class FormUsuario {
     correoUsuario!: string;
     claveUsuario!: string;
     estadoUsuario!: boolean;
+    userName!: string;
   }
 
 @Component({
@@ -84,7 +85,8 @@ export class NewUsuarioComponent {
             descripcionUsuario: '',
             correoUsuario: '',
             claveUsuario: '',
-            estadoUsuario: true
+            estadoUsuario: true,
+            userName:''
         };
       }
     });

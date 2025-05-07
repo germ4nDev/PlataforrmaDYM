@@ -47,22 +47,22 @@ export class PtlaplicacionesService {
     }
 
     getAplicacionById(id: string) {
-        const url = `${ base_url }/aplicaciones/` + id;
+        const url = `${ base_url }/aplicaciones/${ id }`;
         return this.http.get( url, this.headers )
     }
 
-    crearAplicacion( aplicacion: PTLAplicacion ) {
+    createAplicacion( aplicacion: PTLAplicacion ) {
         const url = `${ base_url }/aplicaciones`;
         return this.http.post( url, aplicacion, this.headers );
     }
 
-    actualizarAplicacion( aplicacion: PTLAplicacion  ) {
+    updateAplicacion( aplicacion: PTLAplicacion  ) {
         const url = `${ base_url }/aplicaciones/${ aplicacion.aplicacionId }`;
         return this.http.put( url, aplicacion, this.headers );
     }
 
-    borrarAplicacion( _id: number ) {
-        const url = `${ base_url }/aplicaciones/${ _id }`;
+    deleteAplicacion( id: number ) {
+        const url = `${ base_url }/aplicaciones/${ id }`;
         return this.http.delete( url, this.headers );
     }
 }

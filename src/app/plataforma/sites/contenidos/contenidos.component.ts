@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { PTLContenidosEL } from 'src/app/theme/shared/_helpers/models/PTLContenidosEL.model';
+import { PTLContenidoEL } from 'src/app/theme/shared/_helpers/models/PTLContenidoEL.model';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { PTLContenidosELService } from 'src/app/theme/shared/service/ptlcontenidos-el.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -23,7 +23,7 @@ export class ContenidosComponent implements OnInit, AfterViewInit {
 
 dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  contenidoEL: PTLContenidosEL[]=[];
+  contenidoEL: PTLContenidoEL[]=[];
 
   constructor(private router: Router,
       private BreadCrumb : BreadcrumbComponent,
@@ -46,7 +46,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       this.consultarContenido();
   }
   consultarContenido () {
-    this.contenidoService.getContenido().subscribe((contenido:any) => {
+    this.contenidoService.getContenidos().subscribe((contenido:any) => {
         console.log('Todos los contenido', contenido.resp.data);
         this.contenidoEL = contenido.resp.data;
         this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
@@ -100,7 +100,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.contenidoService.eliminarContenido(id).subscribe({
+        this.contenidoService.deleteContenido(id).subscribe({
           next: (resp:any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
             this.contenidoEL = this.contenidoEL.filter(s => s.contenidoId !== id);

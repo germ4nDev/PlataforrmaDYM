@@ -1,9 +1,10 @@
-export class PTLHelpDeskTicketsAP {
+export class PTLTicketAP {
     constructor (
         public ticketId : number,
         public aplicacionId : number,
         public nombreTicket : string,
         public descripcionTicket : string,
-        public estadoTicket : boolean
+        public estadoTicket : boolean,
+        public usuarioSenderId : number
     ) {}
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { PTLUsuarioAP } from '../_helpers/models/PTLUsuarioAP.model';
-import { PTLUsuarios } from '../_helpers/models/PTLUsuarios.model';
+import { PTLUsuario } from '../_helpers/models/PTLUsuario.model';
 
 const base_url = environment.apiUrl;
 
@@ -33,9 +33,9 @@ export class PTLUsuariosService {
 
     getUsuarios() {
         const url = `${ base_url }/api/PTLUsuarios/GetListUsuarios`;
-        return this.http.get<PTLUsuarios[]>( url, this.headers )
+        return this.http.get<PTLUsuario[]>( url, this.headers )
         .pipe(
-            map((resp: PTLUsuarios[]) => {
+            map((resp: PTLUsuario[]) => {
                 console.log('respuesta servicio', resp);
                 return {
                     ok: true,
@@ -57,7 +57,7 @@ export class PTLUsuariosService {
         }
 
 
-    insertarUsuarios(usuario: PTLUsuarios) {
+    insertarUsuarios(usuario: PTLUsuario) {
         const url = `${base_url}/api/PTLUsuarios/PostInsertarUsuario`;
         return this.http.post<{ ok: boolean, mensaje: string }>(url, usuario, this.headers)
             .pipe(
@@ -71,7 +71,7 @@ export class PTLUsuariosService {
             );
         }
 
-    modificarUsuarios(usuario: PTLUsuarios) {
+    modificarUsuarios(usuario: PTLUsuario) {
         const url = `${base_url}/api/PTLUsuarios/PutModificarUsuario`;
         return this.http.put<{ ok: boolean, mensaje: string }>(url, usuario, this.headers)
         .pipe(

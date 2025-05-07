@@ -106,7 +106,7 @@ export class AplicacionesComponent implements OnInit, AfterViewInit {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                this.aplicacionesService.borrarAplicacion(id).subscribe({
+                this.aplicacionesService.deleteAplicacion(id).subscribe({
                     next: (resp: any) => {
                         Swal.fire('Eliminado', resp.mensaje, 'success');
                         this.aplicaciones = this.aplicaciones.filter(s => s.aplicacionId !== id);

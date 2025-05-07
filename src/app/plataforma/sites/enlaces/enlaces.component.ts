@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 import { BreadcrumbComponent } from '../../../theme/shared/components/breadcrumb/breadcrumb.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-import { PTLEnlaceST } from 'src/app/theme/shared/_helpers/models/PTLEnlacesST.model';
+import { PTLEnlaceST } from 'src/app/theme/shared/_helpers/models/PTLEnlaceST.model';
 import { PTLEnlacesSTService } from 'src/app/theme/shared/service/ptlenlaces-st.service';
 
 @Component({
@@ -100,7 +100,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.enlacesService.eliminarEnlace(id).subscribe({
+        this.enlacesService.deleteEnlace(id).subscribe({
           next: (resp:any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
             this.enlaceST = this.enlaceST.filter(s => s.enlaceId !== id);

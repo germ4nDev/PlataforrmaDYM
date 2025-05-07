@@ -7,12 +7,12 @@ import { PTLRolesAPService } from 'src/app/theme/shared/service/ptlroles-ap.serv
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import Swal from 'sweetalert2';
 
-export class FormRol {
-  rolId!: number;
+export class formRol {
+  roleId!: number;
   aplicacionId!: number;
-  nombreRol!: string;
-  descripcionRol!: string;
-  estadoRol!: boolean;
+  nombreRole!: string;
+  descripcionRole!: string;
+  estadoRole!: boolean;
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class FormRol {
   styleUrl: './new-roles.component.scss'
 })
 export class NewRolesComponent {
-  FormRol!: FormRol;
+  formRol!: formRol;
   form: undefined;
   isSubmit: boolean;
   modoEdicion: boolean = false;
@@ -40,14 +40,14 @@ export class NewRolesComponent {
   ngOnInit() {
     this.BreadCrumb.setBreadcrumb();
     this.route.queryParams.subscribe((params) => {
-      const id = params['rolId'];
+      const id = params['roleId'];
       console.log('me llena el Id', id);
 
       if (id) {
         this.modoEdicion = true;
-        this.rolService.getRolesById(+id).subscribe({
+        this.rolService.getRoleById(+id).subscribe({
           next: (resp: any) => {
-            this.FormRol = resp.data;
+            this.formRol = resp.data;
           },
           error: () => {
             Swal.fire('Error', 'No se pudo obtener el rol', 'error');
@@ -55,12 +55,12 @@ export class NewRolesComponent {
         });
       } else {
         this.modoEdicion = false;
-        this.FormRol = {
-          rolId: 0,
+        this.formRol = {
+          roleId: 0,
           aplicacionId: 0,
-          nombreRol: '',
-          descripcionRol: '',
-          estadoRol: true
+          nombreRole: '',
+          descripcionRole: '',
+          estadoRole: true
         };
       }
     });
@@ -74,7 +74,7 @@ export class NewRolesComponent {
     }
 
     if (this.modoEdicion) {
-      this.rolService.modificarRoles(this.FormRol).subscribe({
+      this.rolService.updateRole(this.formRol).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
             Swal.fire('', 'El rol se modificó correctamente', 'success');
@@ -89,7 +89,7 @@ export class NewRolesComponent {
         }
       });
     } else {
-      this.rolService.insertarRoles(this.FormRol).subscribe({
+      this.rolService.createRole(this.formRol).subscribe({
         next: (resp: any) => {
           if (resp.ok) {
             Swal.fire('', 'El Roles se insertó correctamente', 'success');

@@ -1,7 +1,7 @@
-export class PTLUsuarioEmpresaAP {
+export class PTLUsuarioEmpresaSC {
     constructor (
         public usuarioEmpresaId : number,
-        public usuarioId : number,
+        public usuarioSTId : number,
         public empresaId : number
    ) {}
 }

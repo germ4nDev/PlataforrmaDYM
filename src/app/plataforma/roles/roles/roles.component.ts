@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { PTLRolesAP } from 'src/app/theme/shared/_helpers/models/PTLRolesAP.model';
+import { PTLRoleAP } from 'src/app/theme/shared/_helpers/models/PTLRoleAP.model';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { PTLRolesAPService } from 'src/app/theme/shared/service/ptlroles-ap.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -23,7 +23,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
 
   dtColumnSearchingOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  rolesAP: PTLRolesAP[] = [];
+  rolesAP: PTLRoleAP[] = [];
 
   constructor(
     private router: Router,
@@ -35,9 +35,9 @@ export class RolesComponent implements OnInit, AfterViewInit {
     this.dtColumnSearchingOptions = {
       responsive: true,
       columns: [
-        { title: 'Nombre', data: 'nombreRol' },
-        { title: 'Descripción', data: 'descripcionRol' },
-        { title: 'Estado', data: 'estadoRol' },
+        { title: 'Nombre', data: 'nombreRole' },
+        { title: 'Descripción', data: 'descripcionRole' },
+        { title: 'Estado', data: 'estadoRole' },
         { title: 'Opciones', data: 'opciones' }
       ]
     };
@@ -85,7 +85,7 @@ export class RolesComponent implements OnInit, AfterViewInit {
   }
 
   editarRol(id: number) {
-    this.router.navigate(['/roles/new-roles'], { queryParams: { rolId: id } });
+    this.router.navigate(['/roles/new-roles'], { queryParams: { roleId: id } });
   }
 
   eliminarRol(id: number, nombre: string) {
@@ -98,10 +98,10 @@ export class RolesComponent implements OnInit, AfterViewInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.rolService.eliminarRoles(id).subscribe({
+        this.rolService.deleteRole(id).subscribe({
           next: (resp: any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
-            this.rolesAP = this.rolesAP.filter((s) => s.rolId !== id);
+            this.rolesAP = this.rolesAP.filter((s) => s.roleId !== id);
           },
           error: (err: any) => {
             Swal.fire('Error', 'No se pudo eliminar el rol.', 'error');

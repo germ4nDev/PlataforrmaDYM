@@ -1,4 +1,4 @@
-export class PTLUsuarios {
+export class PTLUsuario {
     constructor (
         public usuarioId : number,
         public fotoUsuario : string,
@@ -7,6 +7,7 @@ export class PTLUsuarios {
         public descripcionUsuario : string,
         public correoUsuario : string,
         public claveUsuario : string,
-        public estadoUsuario : boolean
+        public estadoUsuario : boolean,
+        public userName : string
    ) {}
 }

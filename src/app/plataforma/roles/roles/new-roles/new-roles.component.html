@@ -30,13 +30,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-control-label" for="nombreRol">nombre</label>
-                                <input class="form-control input-md" id="nombreRol" name="nombreRol" type="text"
+                                <label class="form-control-label" for="nombreRole">nombre</label>
+                                <input class="form-control input-md" id="nombreRole" name="nombreRole" type="text"
                                     placeholder="nombre del Rol"
-                                    [ngClass]="{'is-invalid': !nombreRol.valid && (nombreRol.dirty || nombreRol.touched || isSubmit)}"
-                                    #nombreRol="ngModel" required [(ngModel)]="FormRol.nombreRol" />
+                                    [ngClass]="{'is-invalid': !nombreRole.valid && (nombreRole.dirty || nombreRole.touched || isSubmit)}"
+                                    #nombreRole="ngModel" required [(ngModel)]="formRol.nombreRole" />
                                 <label
-                                    *ngIf="!nombreRol.valid && (nombreRol.dirty || nombreRol.touched || isSubmit)"
+                                    *ngIf="!nombreRole.valid && (nombreRole.dirty || nombreRole.touched || isSubmit)"
                                     class="error jquery-validation-error small form-text invalid-feedback">
                                     Por favor, Ingrese un nombre. Este campo es obligatorio.
                                 </label>
@@ -48,13 +48,13 @@
                                 <div class="radio-buttons">
                                     <label class="radio-button">
                                         <input name="option" type="radio" [value]="true"
-                                            [(ngModel)]="FormRol.estadoRol">
+                                            [(ngModel)]="formRol.estadoRole">
                                         <div class="radio-circle"></div>
                                         <label class="radio-label">Activo</label>
                                     </label>
                                     <label class="radio-button">
                                         <input name="option" type="radio" [value]="false"
-                                            [(ngModel)]="FormRol.estadoRol">
+                                            [(ngModel)]="formRol.estadoRole">
                                         <div class="radio-circle"></div>
                                         <label class="radio-label">Inactivo</label>
                                     </label>
@@ -65,13 +65,13 @@
                             <div class="form-group">
                                 <label class="form-label">Descripción</label>
                                 <textarea class="form-control" placeholder="Descripcion del Rol"
-                                    name="descripcionRol"
-                                    [ngClass]="{'is-invalid': !descripcionRol.valid && (descripcionRol.dirty || descripcionRol.touched || isSubmit)}"
-                                    #descripcionRol="ngModel" required [(ngModel)]="FormRol.descripcionRol"
+                                    name="descripcionRole"
+                                    [ngClass]="{'is-invalid': !descripcionRole.valid && (descripcionRole.dirty || descripcionRole.touched || isSubmit)}"
+                                    #descripcionRole="ngModel" required [(ngModel)]="formRol.descripcionRole"
                                     rows="5">
                                 </textarea>
                                 <label
-                                    *ngIf="!descripcionRol.valid && (descripcionRol.dirty || descripcionRol.touched || isSubmit)"
+                                    *ngIf="!descripcionRole.valid && (descripcionRole.dirty || descripcionRole.touched || isSubmit)"
                                     class="error jquery-validation-error small form-text invalid-feedback">
                                     Por favor, ingrese una descripción. Este campo es obligatorio.
                                 </label>

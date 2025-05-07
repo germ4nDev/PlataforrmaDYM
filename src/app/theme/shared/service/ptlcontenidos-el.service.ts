@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { PTLUsuarioAP } from '../_helpers/models/PTLUsuarioAP.model';
-import { PTLContenidosEL } from '../_helpers/models/PTLContenidosEL.model';
+import { PTLContenidoEL } from '../_helpers/models/PTLContenidoEL.model';
 
 const base_url = environment.apiUrl;
 
@@ -12,90 +12,55 @@ const base_url = environment.apiUrl;
   providedIn: 'root'
 })
 export class PTLContenidosELService {
-    user : PTLUsuarioAP = new PTLUsuarioAP(0, 0, '', '', '', false, '');
+  user: PTLUsuarioAP = new PTLUsuarioAP(0, 0, '', '', '', false, '');
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    get token(): string {
-        this.user = JSON.parse(localStorage.getItem('currentUser') || '');
-        if (this.user.serviceToken !== '') {
-            return this.user.serviceToken;
-        }
-        return '';
+  get token(): string {
+    this.user = JSON.parse(localStorage.getItem('currentUser') || '');
+    if (this.user.serviceToken !== '') {
+      return this.user.serviceToken;
     }
+    return '';
+  }
 
-    get headers() {
-        return {
-            headers: {
-                'x-token': this.token
-            }
-        }
-    }
-
-    getContenido() {
-        const url = `${ base_url }/api/PTLContenidosEL/GetListContenidos`;
-        return this.http.get<PTLContenidosEL[]>( url, this.headers )
-        .pipe(
-            map((resp: PTLContenidosEL[]) => {
-                console.log('respuesta servicio', resp);
-                return {
-                    ok: true,
-                    resp
-                };
-            })
-        );
-    }
-
-    getContenidoById(id: number) {
-        const url = `${base_url}/api/PTLContenidosEL/GetContenidoById/${id}`;
-        return this.http.get(url, this.headers)
-        .pipe(
-            map((resp: any) => {
-                console.log('respuesta servicio Id', resp);
-                return resp;
-            })
-        );
-        }
-
-
-    insertarContenido(contenido: PTLContenidosEL) {
-        const url = `${base_url}/api/PTLContenidosEL/PostInsertarContenido`;
-        return this.http.post<{ ok: boolean, mensaje: string }>(url, contenido, this.headers)
-            .pipe(
-                map(resp => {
-                    console.log('respuesta servicio insertar', resp);
-                    return {
-                        ok: true,
-                        resp
-                    };
-                })
-            );
-        }
-
-    modificarContenido(contenido: PTLContenidosEL) {
-        const url = `${base_url}/api/PTLContenidosEL/PutModificarContenido`;
-        return this.http.put<{ ok: boolean, mensaje: string }>(url, contenido, this.headers)
-        .pipe(
-            map(resp => {
-            console.log('respuesta servicio modificar', resp);
-            return {
-                ok: true,
-                resp
-            };
-            })
-        );
-    }
-
-    eliminarContenido(id: number) {
-        const url = `${base_url}/api/PTLContenidosEL/DeleteContenido/${id}`;
-        return this.http.delete<{ ok: boolean, mensaje: string }>(url, this.headers)
-          .pipe(
-            map(resp => {
-              console.log('respuesta servicio eliminar', resp);
-              return resp;
-            })
-          );
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
       }
+    };
+  }
 
+  getContenidos() {
+    const url = `${base_url}/contenidos-el`;
+    return this.http.get(url, this.headers).pipe(
+      map((resp: any) => {
+        return {
+          ok: true,
+          contenidos: resp.contenidos
+        };
+      })
+    );
+  }
 
+  getContenidoById(id: number) {
+    const url = `${base_url}/contenidos-el/${id}`;
+    return this.http.get(url, this.headers);
+  }
+
+  createContenido(contenido: PTLContenidoEL) {
+    const url = `${base_url}/contenidos-el`;
+    return this.http.post(url, contenido, this.headers);
+  }
+
+  updateContenido(contenido: PTLContenidoEL) {
+    const url = `${base_url}/contenidos-el/${contenido.contenidoId}`;
+    return this.http.put(url, contenido, this.headers);
+  }
+
+  deleteContenido(id: number) {
+    const url = `${base_url}/contenidos-el/${id}`;
+    return this.http.delete(url, this.headers);
+  }
 }

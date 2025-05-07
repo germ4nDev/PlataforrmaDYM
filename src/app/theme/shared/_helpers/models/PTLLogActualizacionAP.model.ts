@@ -1,9 +1,11 @@
 export class PTLLogActualizacionAP {
     constructor (
-        public suscriptorVersionId : number,
-        public suscriptorId : number,
+        public logId : number,
+        public aplicacionId : number,
         public versionId : number,
-        public fechaActualizacion : Date,
-        public usuarioActualizavion : number
+        public suscriptorId : number,
+        public suscriptorVersionId : number,
+        public usuarioActualizacion : number,
+        public fechaLogActualizacion : Date
     ) {}
 }
