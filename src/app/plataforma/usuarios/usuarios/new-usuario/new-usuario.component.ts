@@ -66,7 +66,7 @@ export class NewUsuarioComponent {
 
       if (id) {
         this.modoEdicion = true;
-        this.usuariosService.getUsuarioById(+id).subscribe({
+        this.usuariosService.getUsuariosById(+id).subscribe({
           next: (resp: any) => {
             this.FormUsuario = resp.data;
           },
@@ -99,7 +99,7 @@ export class NewUsuarioComponent {
       return;
     }
     if (this.modoEdicion) {
-        this.usuariosService.modificarUsuarios(this.FormUsuario).subscribe({
+        this.usuariosService.updateUsuario(this.FormUsuario).subscribe({
           next: (resp: any) => {
             if (resp.ok) {
               Swal.fire('', 'El sitio se modificó correctamente', 'success');
@@ -116,7 +116,7 @@ export class NewUsuarioComponent {
       }
       else
       {
-        this.usuariosService.insertarUsuarios(this.FormUsuario).subscribe({
+        this.usuariosService.createUsuario(this.FormUsuario).subscribe({
             next: (resp:any) => {
               if (resp.ok) {
                 Swal.fire('', 'El usuario se insertó correctamente', 'success');

@@ -8,7 +8,8 @@ export const environment = {
   appVersion: packageInfo.version,
   production: false,
 //   apiUrl: 'http://localhost:5111'
-  apiUrl: 'https://mock-data-api-nextjs.vercel.app'
+  apiUrl: 'http://DYMDESARROLLO:3000'
+//   apiUrl: 'https://mock-data-api-nextjs.vercel.app'
 };
 
 /*

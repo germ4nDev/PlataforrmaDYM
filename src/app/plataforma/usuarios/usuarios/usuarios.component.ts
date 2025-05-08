@@ -101,7 +101,7 @@ dtColumnSearchingOptions: DataTables.Settings = {};
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.usuariosService.eliminarUsuarios(id).subscribe({
+        this.usuariosService.deleteUsuario(id).subscribe({
           next: (resp:any) => {
             Swal.fire('Eliminado', resp.mensaje, 'success');
             this.usuarios = this.usuarios.filter(s => s.usuarioId !== id);
