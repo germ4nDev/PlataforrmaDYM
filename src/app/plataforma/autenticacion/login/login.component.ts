@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Angular import
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+
+// import { first } from 'rxjs/operators';
 
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
@@ -17,6 +20,7 @@ import { AuthenticationService } from 'src/app/theme/shared/service/authenticati
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
+
 export class LoginComponent implements OnInit {
   // public method
   usernameValue = 'info@codedthemes.com';
@@ -30,14 +34,14 @@ export class LoginComponent implements OnInit {
   classList!: { toggle: (arg0: string) => void };
 
   constructor(
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService
+    public formBuilder: FormBuilder,
+    public route: ActivatedRoute,
+    public router: Router,
+    public authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-    //    this.router.navigate(['/dashboard/analytics']);
+    //   this.router.navigate(['/dashboard/analytics']);
     }
   }
 
@@ -68,34 +72,69 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  onSubmit() {
+  onLoignUserClick() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;
     }
-
     this.error = '';
     this.loading = true;
+    const email = this.formValues?.['username']?.value;
+    const password = this.formValues?.['password']?.value;
+    console.log('email', email);
+    console.log('password', password);
     this.authenticationService
-      .login(this.formValues?.['username']?.value, this.formValues?.['password']?.value)
-      .pipe(first())
-      .subscribe({
-        next: (user) => {
-            console.log('el usuario', user);
-          // RODO aui es donde se inicia la sesion de usuario
-          // aplicacionId
-          // fecha inicio
-          // fecha fin
-          // array de roles segun la aplicacionj
-          this.router.navigate(['/frontal/inicio']);
-        },
-        error: (error) => {
-          this.error = error;
-          this.loading = false;
+    .login(email, password)
+    .subscribe((resp: any) => {
+        console.log('resp', resp);
+        if (resp.ok == false) {
+            Swal.fire({
+            title: resp.msg,
+            text: 'La dirección de correo electrónico ingresada no se encuentra registrada en nuestro sistema!',
+            icon: 'error',
+            showCloseButton: true,
+            showCancelButton: false
+            }).then((willDelete) => {
+                if (willDelete.dismiss) {
+                    Swal.fire('', 'Your imaginary file is safe!', 'error');
+                }
+            });
+            this.loading = false;
+        } else {
+            // localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+            // localStorage.setItem('email', resp.usuario.email);
+            // localStorage.setItem('cliente', resp.usuario.cliente);
+            // localStorage.setItem('empresa', resp.usuario.empresa);
+            // localStorage.setItem('operador', resp.usuario.operador);
+            // localStorage.setItem('roles', JSON.stringify(resp.usuario.roles));
+            // localStorage.setItem('niveles', JSON.stringify(resp.usuario.niveles));
+            // if (this.remember) {
+            //   localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+            // } else {
+            //   localStorage.setItem('email', this.email);
+            //   localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+            // }
+            // console.log('estoty aca', resp);
+            // const roles = this.usuarioService.usuario.roles;
+            // console.log('aca esta  el usuario', roles);
+            // roles.forEach(role => {
+            //   this.usuarioService.isUserlInRole(role).subscribe(data => {
+            //     console.log('rrsultado', data);
+            //   });
+            // });
+            // Navegar al Dashboard
+            // this.router.navigate(['/frontal/inicio']);
+
+            console.log('Mail Encontrado', resp);
+            this.loading = false;
         }
-      });
+    }, (err) => {
+        this.error = err;
+        this.loading = false;
+        // Si sucede un error
+        Swal.fire('Error', err.error.msg, 'error');
+    });
   }
 
 }
