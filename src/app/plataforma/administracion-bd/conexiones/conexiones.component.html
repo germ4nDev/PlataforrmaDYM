@@ -1,32 +1,151 @@
 <div class="row">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-header">
-                <h5>Column Searching</h5>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table datatable [dtOptions]="dtColumnSearchingOptions"
-                        class="table table-striped row-border table-hover">
-                        <tfoot>
-                            <tr>
-                                <th><input type="text" placeholder="Search Name" name="search-name"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Position" name="search-position"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Office" name="search-office"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Age" name="search-age"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Satrt Date" name="search-date"
-                                        class="form-control" /></th>
-                                <th><input type="text" placeholder="Search Salary" name="search-salary"
-                                        class="form-control" /></th>
-                            </tr>
-                        </tfoot>
-                    </table>
+	<div class="col-sm-12">
+        <div class="card card-header-sticky">
+			<div class="card-header">
+				<h4>Conexiones</h4>
+                <hr>
+                <div class="row col-sm-12">
+                    <div class="col-sm-6">
+                        <app-breadcrumb></app-breadcrumb>
+                    </div>
+                    <div class="col-sm-6 justify-content-end d-flex">
+                        <button type="button" (click)="nuevaConexion()" class="btn-NuevaConexion">
+                            Nuevo Conexión
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+		<div class="card">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table [dtOptions]="dtColumnSearchingOptions" datatable class="table row-border">
+						<thead>
+                            <tr>
+								<th>Nombre Conexión</th>
+								<th>Descripción</th>
+								<th>Estado</th>
+								<th>Nombre Servidor</th>
+								<th>BDNombre</th>
+								<th>BDUser</th>
+								<th>BDPassword/th>
+								<th>BDPort</th>
+								<th>Opciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let conexion of conexionBD">
+								<td>
+									{{ conexion.nombreConexion }}
+								</td>
+								<td>
+									{{ conexion.descripcionConexion }}
+								</td>
+								<td>
+                                    {{ getEstado(conexion.estadoConexion)}}
+								</td>
+								<td>
+                                    {{ conexion.nombreServidor }}
+								</td>
+								<td>
+                                    {{ conexion.BDNombre }}
+								</td>
+                                <td>
+                                    {{ conexion.BDUser }}
+								</td>
+                                <td>
+                                    {{ conexion.BDPassword }}
+								</td>
+                                <td>
+                                    {{ conexion.BDPort }}
+								</td>
+								<td style="text-align: center; width: 10%;">
+									<div class="d-flex flex-wrap gap-2">
+										<imput type="button" class="btn btn-icon btn-outline-primary d-inline-flex btnEdit"
+                                            (click)="editarConexion(conexion.conexionId)" title="Modificar Conexion">
+											<i class="feather icon-edit"></i>
+										</imput>
+										<imput type="button" class="btn btn-icon btn-outline-danger d-inline-flex btnDelet"
+                                            (click)="eliminarConexion(conexion.conexionId, conexion.nombreConexion)" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Conexion">
+											<i class="feather icon-trash-2"></i>
+										</imput>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+                        <tfoot>
+							<tr>
+								<th>
+                                    <input #nombreConexion
+                                        (keyup)="filtrarColumna(0, nombreConexion.value)"
+                                        type="text"
+                                        placeholder="Filtro Nombre"
+                                        name="filtro-nombre"
+                                        class="form-control">
+                                </th>
+								<th>
+									<input #descripcionConexion
+										(keyup)="filtrarColumna(1, descripcionConexion.value)"
+										type="text"
+										placeholder="Filtro descripción"
+										name="filtro-nombre"
+										class="form-control">
+                                </th>
+                                <th>
+                                    <input #estadoConexion
+                                        (keyup)="filtrarColumna(2, estadoConexion.value)"
+                                        type="text"
+                                        placeholder="Filtro Estado"
+                                        name="filtro-estado"
+                                        class="form-control">
+                                </th>
+                                <th>
+                                        <input #nombreServidor
+										(keyup)="filtrarColumna(3, nombreServidor.value)"
+										type="text"
+										placeholder="Filtro nombre Servidor"
+										name="filtro-url"
+										class="form-control">
+								</th>
+								<th>
+									<input #BDNombre
+										(keyup)="filtrarColumna(4, BDNombre.value)"
+										type="text"
+										placeholder="Filtro BDNombre"
+										name="filtro-Conexion"
+										class="form-control">
+								</th>
+                                <th>
+									<input #BDUser
+										(keyup)="filtrarColumna(5, BDUser.value)"
+										type="text"
+										placeholder="Filtro BDUser"
+										name="filtro-Conexion"
+										class="form-control">
+								</th>
+                                <th>
+									<input #BDPassword
+										(keyup)="filtrarColumna(6, BDPassword.value)"
+										type="text"
+										placeholder="Filtro BDPassword"
+										name="filtro-Conexion"
+										class="form-control">
+								</th>
+                                <th>
+									<input #BDPort
+										(keyup)="filtrarColumna(7, BDPort.value)"
+										type="text"
+										placeholder="Filtro BDPort"
+										name="filtro-Conexion"
+										class="form-control">
+								</th>
+                                <th>
+                                </th>
+							</tr>
+                        </tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
