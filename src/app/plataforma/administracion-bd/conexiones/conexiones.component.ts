@@ -5,6 +5,7 @@ import { DataTablesModule, DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { PTLConexionBD } from 'src/app/theme/shared/_helpers/models/PTLConexionBD.model';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
+import { PTLConexionesBDService } from 'src/app/theme/shared/service/ptlconexiones-bd.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import Swal from 'sweetalert2';
 
@@ -26,7 +27,7 @@ export class ConexionesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private conexionService:PTLConexionBDService,
+    private conexionService:PTLConexionesBDService,
     private BreadCrumb : BreadcrumbComponent
   ) {}
 
@@ -51,7 +52,7 @@ export class ConexionesComponent implements OnInit, AfterViewInit {
   }
 
   consultarConexion () {
-    this.conexionService.getConexion().subscribe((conexion:any) => {
+    this.conexionService.getConexiones().subscribe((conexion:any) => {
         console.log('Todos los Conexion', conexion.resp.data);
         this.conexionBD = conexion.resp.data;
         this.dtTrigger.next(null);// <--- Dispara la actualización de la tabla
@@ -86,7 +87,7 @@ export class ConexionesComponent implements OnInit, AfterViewInit {
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe(); // <--- Destruye el trigger para evitar memory leaks
   }
-  nuevoConexion() {
+  nuevaConexion() {
     this.router.navigate(['/sites/new-site']);
   }
 
