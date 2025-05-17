@@ -4,6 +4,5 @@ export const environment = {
   appVersion: packageInfo.version,
   production: true,
 //   apiUrl: 'http://localhost:5111'
-    apiUrl: 'http://DYMDESARROLLO:3000'
-//   apiUrl: 'https://mock-data-api-nextjs.vercel.app'
+  apiUrl: 'https://mock-data-api-nextjs.vercel.app'
 };

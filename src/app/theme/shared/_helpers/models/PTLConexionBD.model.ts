@@ -8,6 +8,7 @@ export class PTLConexionBD {
         public estadoConexion : boolean,
         public nombreServidor : string,
         public BDNombre : string,
+        public BDUser : string,
         public BDPassword : string,
         public BDPort : number
     ) {}

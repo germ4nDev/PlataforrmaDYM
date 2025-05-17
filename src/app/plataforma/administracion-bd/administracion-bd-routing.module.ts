@@ -10,6 +10,10 @@ const routes: Routes = [
         loadComponent: () => import('./conexiones/conexiones.component').then(m => m.ConexionesComponent)
       },
       {
+        path: 'new-conexion',
+        loadComponent: () => import('./conexiones/new-conexion/new-conexion.component').then(m => m.NewConexionComponent)
+      },
+      {
         path: 'gestion-conexion',
         loadComponent: () => import('./conexiones/gestion-conexion/gestion-conexion.component').then(m => m.GestionConexionComponent)
       },
