@@ -88,7 +88,7 @@ export class ConexionesComponent implements OnInit, AfterViewInit {
     this.dtTrigger.unsubscribe(); // <--- Destruye el trigger para evitar memory leaks
   }
   nuevaConexion() {
-    this.router.navigate(['/sites/new-site']);
+    this.router.navigate(['/administracion-bd/new-conexion']);
   }
 
   editarConexion(id: number) {
